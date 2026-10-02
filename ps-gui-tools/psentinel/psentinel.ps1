@@ -333,40 +333,94 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                     <Grid Margin="30">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/> <RowDefinition Height="150"/> <RowDefinition Height="Auto"/> </Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="140"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                        <StackPanel Grid.Row="0" Margin="0,0,0,20">
-                            <TextBlock Text="Network Intelligence Audit" FontSize="26" FontWeight="ExtraBold" Foreground="White"/>
-                            <TextBlock Text="Live TCP/UDP socket monitoring and interface diagnostics." Foreground="#666"/>
+                        <StackPanel Grid.Row="0" Margin="0,0,0,15">
+                            <TextBlock Text="Network Intelligence Audit &amp; Diagnostics" FontSize="26" FontWeight="ExtraBold" Foreground="White"/>
+                            <TextBlock Text="Advanced live TCP/UDP socket monitoring, interface metrics, routing tables, and deep stack diagnostics." Foreground="#666"/>
                         </StackPanel>
 
-                        <Border Grid.Row="1" Background="#0D0D0F" CornerRadius="10" Padding="10" BorderBrush="#1A1A1D" BorderThickness="1">
+                        <!-- Network Metric Summary Cards -->
+                        <UniformGrid Grid.Row="1" Columns="4" Height="90" Margin="0,0,0,15">
+                            <Border Background="#121214" Margin="4" CornerRadius="8" BorderBrush="#1A1A1D" BorderThickness="1">
+                                <StackPanel VerticalAlignment="Center" Margin="15,0">
+                                    <TextBlock Text="TOTAL SOCKETS" Foreground="#007ACC" FontSize="10" FontWeight="Bold"/>
+                                    <TextBlock Name="cntTotalSockets" Text="0" FontSize="26" FontWeight="Bold" Foreground="White"/>
+                                    <TextBlock Text="Active Endpoints" FontSize="9" Foreground="#444"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Background="#121214" Margin="4" CornerRadius="8" BorderBrush="#1A1A1D" BorderThickness="1">
+                                <StackPanel VerticalAlignment="Center" Margin="15,0">
+                                    <TextBlock Text="TCP ESTABLISHED" Foreground="#2ECC71" FontSize="10" FontWeight="Bold"/>
+                                    <TextBlock Name="cntTcpActive" Text="0" FontSize="26" FontWeight="Bold" Foreground="White"/>
+                                    <TextBlock Text="Active Sessions" FontSize="9" Foreground="#444"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Background="#121214" Margin="4" CornerRadius="8" BorderBrush="#1A1A1D" BorderThickness="1">
+                                <StackPanel VerticalAlignment="Center" Margin="15,0">
+                                    <TextBlock Text="LISTENING PORTS" Foreground="#E65100" FontSize="10" FontWeight="Bold"/>
+                                    <TextBlock Name="cntListening" Text="0" FontSize="26" FontWeight="Bold" Foreground="White"/>
+                                    <TextBlock Text="Open Service Ports" FontSize="9" Foreground="#444"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Background="#121214" Margin="4" CornerRadius="8" BorderBrush="#1A1A1D" BorderThickness="1">
+                                <StackPanel VerticalAlignment="Center" Margin="15,0">
+                                    <TextBlock Text="UDP ENDPOINTS" Foreground="#9C27B0" FontSize="10" FontWeight="Bold"/>
+                                    <TextBlock Name="cntUdpCount" Text="0" FontSize="26" FontWeight="Bold" Foreground="White"/>
+                                    <TextBlock Text="Datagram Listeners" FontSize="9" Foreground="#444"/>
+                                </StackPanel>
+                            </Border>
+                        </UniformGrid>
+
+                        <!-- Filter Bar -->
+                        <Border Grid.Row="2" Background="#111" CornerRadius="5" Padding="15,8" Margin="0,0,0,12" BorderBrush="#222" BorderThickness="1">
+                            <DockPanel>
+                                <TextBlock Text="🔍 FILTER SOCKETS:" VerticalAlignment="Center" Margin="0,0,15,0" Foreground="#007ACC" FontWeight="Bold" FontSize="11"/>
+                                <TextBox Name="txtNetFilter" VerticalContentAlignment="Center" Background="Transparent" Foreground="White" BorderThickness="0" CaretBrush="White"/>
+                            </DockPanel>
+                        </Border>
+
+                        <Border Grid.Row="3" Background="#0D0D0F" CornerRadius="10" Padding="10" BorderBrush="#1A1A1D" BorderThickness="1">
                             <DataGrid Name="dgNetstat" AutoGenerateColumns="False" Background="Transparent" Foreground="#BBB" BorderThickness="0" IsReadOnly="True">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="PROCESS" Binding="{Binding ProcessName}" Width="120">
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="TextBlock">
-                                                <Setter Property="ToolTip" Value="{Binding Path}"/> </Style>
+                                                <Setter Property="ToolTip" Value="{Binding Path}"/>
+                                            </Style>
                                         </DataGridTextColumn.ElementStyle>
                                     </DataGridTextColumn>
-                                        <DataGridTextColumn Header="PROTOCOL" Binding="{Binding Protocol}" Width="120"/>
-                                        <DataGridTextColumn Header="USER" Binding="{Binding User}" Width="100"/>
-                                        <DataGridTextColumn Header="LOCAL PORT" Binding="{Binding LocalPort}" Width="80"/>
-                                        <DataGridTextColumn Header="REMOTE IP" Binding="{Binding RemoteAddress}" Width="120"/>
-                                        <DataGridTextColumn Header="HOSTNAME" Binding="{Binding Hostname}" Width="180"/>
-                                        <DataGridTextColumn Header="STATE" Binding="{Binding State}" Width="100"/>
-                                        <DataGridTextColumn Header="EXE PATH" Binding="{Binding Path}" Width="250"/>
+                                    <DataGridTextColumn Header="PROTOCOL" Binding="{Binding Protocol}" Width="90"/>
+                                    <DataGridTextColumn Header="USER" Binding="{Binding User}" Width="100"/>
+                                    <DataGridTextColumn Header="LOCAL PORT" Binding="{Binding LocalPort}" Width="90"/>
+                                    <DataGridTextColumn Header="REMOTE IP" Binding="{Binding RemoteAddress}" Width="120"/>
+                                    <DataGridTextColumn Header="HOSTNAME" Binding="{Binding Hostname}" Width="160"/>
+                                    <DataGridTextColumn Header="STATE" Binding="{Binding State}" Width="100"/>
+                                    <DataGridTextColumn Header="EXE PATH" Binding="{Binding Path}" Width="*"/>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Border>
 
-                        <TextBox Name="txtNetOutput" Grid.Row="2" Margin="0,15,0,0" IsReadOnly="True" Background="#050505" Foreground="#00FF00" FontFamily="Consolas" VerticalScrollBarVisibility="Auto" Padding="10" BorderBrush="#222"/>
+                        <TextBox Name="txtNetOutput" Grid.Row="4" Margin="0,12,0,0" IsReadOnly="True" Background="#050505" Foreground="#00FF00" FontFamily="Consolas" VerticalScrollBarVisibility="Auto" Padding="10" BorderBrush="#222"/>
 
-                        <UniformGrid Grid.Row="3" Columns="4" Margin="0,15,0,0">
-                            <Button Name="btnNetstat" Content="🔍 SCAN CONNECTIONS" Height="45" Margin="0,0,5,0" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
-                            <Button Name="btnIPConfig" Content="📋 INTERFACE DETAILS" Height="45" Margin="5,0,5,0" Background="#1A1A25" Foreground="White" BorderThickness="0"/>
-                            <Button Name="btnRoutePrint" Content="🛤️ ROUTING TABLE" Height="45" Margin="5,0,5,0" Background="#1A1A25" Foreground="White" BorderThickness="0"/>
-                            <Button Name="btnDNSFlush" Content="🧹 FLUSH DNS" Height="45" Margin="5,0,0,0" Background="#B71C1C" Foreground="White" BorderThickness="0"/>
+                        <UniformGrid Grid.Row="5" Columns="4" Margin="0,12,0,0">
+                            <Button Name="btnNetstat" Content="🔍 SCAN CONNECTIONS" Height="42" Margin="0,0,4,0" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                            <Button Name="btnIPConfig" Content="📋 INTERFACE DETAILS" Height="42" Margin="4,0,4,0" Background="#1A1A25" Foreground="White" BorderThickness="0"/>
+                            <Button Name="btnRoutePrint" Content="🛤️ ROUTING TABLE" Height="42" Margin="4,0,4,0" Background="#1A1A25" Foreground="White" BorderThickness="0"/>
+                            <Button Name="btnDNSFlush" Content="🧹 FLUSH DNS" Height="42" Margin="4,0,0,0" Background="#B71C1C" Foreground="White" BorderThickness="0"/>
+                        </UniformGrid>
+
+                        <UniformGrid Grid.Row="6" Columns="4" Margin="0,8,0,0">
+                            <Button Name="btnRenewIP" Content="⚡ RENEW DHCP IP" Height="38" Margin="0,0,4,0" Background="#0D47A1" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                            <Button Name="btnArpTable" Content="🔗 VIEW ARP CACHE" Height="38" Margin="4,0,4,0" Background="#1A1A25" Foreground="White" BorderThickness="0"/>
+                            <Button Name="btnNetSessions" Content="👥 ACTIVE SESSIONS" Height="38" Margin="4,0,4,0" Background="#1A1A25" Foreground="White" BorderThickness="0"/>
+                            <Button Name="btnTraceRoute" Content="📡 TEST TRACERT (8.8.8.8)" Height="38" Margin="4,0,0,0" Background="#2E7D32" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
                         </UniformGrid>
                     </Grid>
                 </TabItem>
@@ -1059,6 +1113,8 @@ $nodes = @(
     "cntCritical", "cntSecurity", "cntDisk", "cntApp", "txtEventFilter",
     "navScreen", "imgScreenshot", "btnTakeScreenshot",
     "dgNetstat", "btnNetstat", "btnIPConfig", "btnRoutePrint", "btnDNSFlush",
+    "cntTotalSockets", "cntTcpActive", "cntListening", "cntUdpCount", "txtNetFilter",
+    "btnRenewIP", "btnArpTable", "btnNetSessions", "btnTraceRoute", "txtNetOutput",
     "dgSoftware", "btnScanSoftware", "btnListUpdates", "btnGetFeatures", "btnUninstallApp",
     "dgDrivers", "txtDriverFilter", "btnScanDrivers",
     "dgProcesses", "txtProcFilter", "btnRefreshProc", "btnKill", "btnUninstallDriver",
@@ -1586,6 +1642,23 @@ $txtProcFilter.Add_TextChanged({
         }
     })
 
+$txtNetFilter.Add_TextChanged({
+        $view = [System.Windows.Data.CollectionViewSource]::GetDefaultView($dgNetstat.ItemsSource)
+        if ($view) {
+            $searchTerm = $txtNetFilter.Text.ToLower()
+            $view.Filter = [Predicate[Object]] {
+                param($item)
+                if ([string]::IsNullOrWhiteSpace($searchTerm)) { return $true }
+                return ($item.ProcessName -like "*$searchTerm*") -or 
+                ($item.RemoteAddress -like "*$searchTerm*") -or 
+                ($item.Hostname -like "*$searchTerm*") -or 
+                ($item.State -like "*$searchTerm*") -or
+                ($item.Protocol -like "*$searchTerm*")
+            }
+            $view.Refresh()
+        }
+    })
+
 $btnNetstat.Add_Click({
         $mainStatus.Text = "Deep-scanning network stack and resolving hostnames..."
         $dgNetstat.ItemsSource = $null
@@ -1618,7 +1691,17 @@ $btnNetstat.Add_Click({
         }
         if ($netData) {
             $dgNetstat.ItemsSource = $netData
-            $mainStatus.Text = "Deep Audit Successful: $($netData.Count) sockets analyzed."
+            $totalCount = $netData.Count
+            $tcpEstCount = ($netData | Where-Object { $_.Protocol -eq "TCP" -and $_.State -eq "Established" }).Count
+            $listenCount = ($netData | Where-Object { $_.RemoteAddress -eq "LISTENING" }).Count
+            $udpCount = ($netData | Where-Object { $_.Protocol -eq "UDP" }).Count
+
+            $cntTotalSockets.Text = [string]$totalCount
+            $cntTcpActive.Text = [string]$tcpEstCount
+            $cntListening.Text = [string]$listenCount
+            $cntUdpCount.Text = [string]$udpCount
+
+            $mainStatus.Text = "Deep Audit Successful: $($totalCount) sockets analyzed."
         }
         else {
             $mainStatus.Text = "Audit Failed. Check WinRM permissions."
@@ -1636,6 +1719,32 @@ $btnRoutePrint.Add_Click({
 $btnDNSFlush.Add_Click({
         Invoke-RExec { ipconfig /flushdns }
         $txtNetOutput.Text = "DNS Resolver Cache Flushed Successfully."
+    })
+
+$btnRenewIP.Add_Click({
+        $txtNetOutput.Text = Invoke-RExec {
+            $out = ipconfig /release 2>&1 | Out-String
+            $out += ipconfig /renew 2>&1 | Out-String
+            return $out
+        }
+        $mainStatus.Text = "DHCP IP Renewed."
+    })
+
+$btnArpTable.Add_Click({
+        $txtNetOutput.Text = Invoke-RExec { arp -a | Out-String }
+        $mainStatus.Text = "ARP Table Displayed."
+    })
+
+$btnNetSessions.Add_Click({
+        $txtNetOutput.Text = Invoke-RExec { net session | Out-String }
+        $mainStatus.Text = "Active Network Sessions Displayed."
+    })
+
+$btnTraceRoute.Add_Click({
+        $txtNetOutput.Text = "Tracing route to 8.8.8.8..."
+        [System.Windows.Forms.Application]::DoEvents()
+        $txtNetOutput.Text = Invoke-RExec { tracert -d 8.8.8.8 | Out-String }
+        $mainStatus.Text = "TraceRoute Completed."
     })
 
 $btnPanicMsg.Add_Click({
