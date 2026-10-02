@@ -183,61 +183,105 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                 <TabItem>
                     <Grid Margin="30">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/> <RowDefinition Height="Auto"/> <RowDefinition Height="Auto"/> <RowDefinition Height="*"/>    </Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                        <StackPanel Grid.Row="0" Margin="0,0,0,20">
-                            <TextBlock Text="System Forensics &amp; Audit" FontSize="28" FontWeight="ExtraBold" Foreground="White"/>
-                            <TextBlock Text="Real-time event analysis across System, Security, and Application logs." Foreground="#666"/>
+                        <StackPanel Grid.Row="0" Margin="0,0,0,15">
+                            <TextBlock Text="System Forensics &amp; Event Intelligence Hub" FontSize="26" FontWeight="ExtraBold" Foreground="White"/>
+                            <TextBlock Text="Advanced telemetry analysis, deep log harvesting across System, Security, Application, and PowerShell logs." Foreground="#666"/>
                         </StackPanel>
 
-                        <UniformGrid Grid.Row="1" Columns="4" Height="100" Margin="0,0,0,20">
-                            <Border Background="#1A0A0A" BorderBrush="#FF4444" BorderThickness="1" CornerRadius="10" Margin="5">
-                                <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="CRITICAL ERRORS" Foreground="#FF4444" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
-                                    <TextBlock Name="cntCritical" Text="0" FontSize="32" Foreground="White" HorizontalAlignment="Center" FontWeight="Bold"/>
-                                    <TextBlock Text="System Stability" FontSize="9" Foreground="#444444" HorizontalAlignment="Center"/>
+                        <!-- Summary Metric Cards -->
+                        <UniformGrid Grid.Row="1" Columns="4" Height="80" Margin="0,0,0,15">
+                            <Border Background="#1A0A0A" BorderBrush="#FF4444" BorderThickness="1" CornerRadius="8" Margin="4">
+                                <StackPanel VerticalAlignment="Center" Margin="15,0">
+                                    <TextBlock Text="CRITICAL ERRORS" Foreground="#FF4444" FontSize="10" FontWeight="Bold"/>
+                                    <TextBlock Name="cntCritical" Text="0" FontSize="24" FontWeight="Bold" Foreground="White"/>
                                 </StackPanel>
                             </Border>
-                            <Border Background="#1A150A" BorderBrush="#FFA500" BorderThickness="1" CornerRadius="10" Margin="5">
-                                <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="AUTH FAILURES" Foreground="#FFA500" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
-                                    <TextBlock Name="cntSecurity" Text="0" FontSize="32" Foreground="White" HorizontalAlignment="Center" FontWeight="Bold"/>
-                                    <TextBlock Text="Security Log 4625" FontSize="9" Foreground="#444444" HorizontalAlignment="Center"/>
+                            <Border Background="#1A150A" BorderBrush="#FFA500" BorderThickness="1" CornerRadius="8" Margin="4">
+                                <StackPanel VerticalAlignment="Center" Margin="15,0">
+                                    <TextBlock Text="AUTH FAILURES" Foreground="#FFA500" FontSize="10" FontWeight="Bold"/>
+                                    <TextBlock Name="cntSecurity" Text="0" FontSize="24" FontWeight="Bold" Foreground="White"/>
                                 </StackPanel>
                             </Border>
-                            <Border Background="#0A121A" BorderBrush="#007ACC" BorderThickness="1" CornerRadius="10" Margin="5">
-                                <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="DISK WARNINGS" Foreground="#007ACC" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
-                                    <TextBlock Name="cntDisk" Text="0" FontSize="32" Foreground="White" HorizontalAlignment="Center" FontWeight="Bold"/>
-                                    <TextBlock Text="I/O &amp; Controller" FontSize="9" Foreground="#444444" HorizontalAlignment="Center"/>
+                            <Border Background="#0A121A" BorderBrush="#007ACC" BorderThickness="1" CornerRadius="8" Margin="4">
+                                <StackPanel VerticalAlignment="Center" Margin="15,0">
+                                    <TextBlock Text="DISK WARNINGS" Foreground="#007ACC" FontSize="10" FontWeight="Bold"/>
+                                    <TextBlock Name="cntDisk" Text="0" FontSize="24" FontWeight="Bold" Foreground="White"/>
                                 </StackPanel>
                             </Border>
-                            <Border Background="#0A1A0F" BorderBrush="#2ECC71" BorderThickness="1" CornerRadius="10" Margin="5">
-                                <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="APP CRASHES" Foreground="#2ECC71" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
-                                    <TextBlock Name="cntApp" Text="0" FontSize="32" Foreground="White" HorizontalAlignment="Center" FontWeight="Bold"/>
-                                    <TextBlock Text="Faulting Modules" FontSize="9" Foreground="#444444" HorizontalAlignment="Center"/>
+                            <Border Background="#0A1A0F" BorderBrush="#2ECC71" BorderThickness="1" CornerRadius="8" Margin="4">
+                                <StackPanel VerticalAlignment="Center" Margin="15,0">
+                                    <TextBlock Text="APP CRASHES" Foreground="#2ECC71" FontSize="10" FontWeight="Bold"/>
+                                    <TextBlock Name="cntApp" Text="0" FontSize="24" FontWeight="Bold" Foreground="White"/>
                                 </StackPanel>
                             </Border>
                         </UniformGrid>
 
-                        <Border Grid.Row="2" Background="#111" CornerRadius="5" Padding="15,10" Margin="5,0,5,15" BorderBrush="#222" BorderThickness="1">
+                        <!-- Log Channel Selector Toolbar -->
+                        <Border Grid.Row="2" Background="#121215" CornerRadius="6" Padding="12" Margin="0,0,0,10" BorderBrush="#222" BorderThickness="1">
+                            <DockPanel>
+                                <TextBlock Text="📂 SELECT LOG CHANNEL:" VerticalAlignment="Center" Foreground="#007ACC" FontWeight="Bold" FontSize="11" Margin="0,0,15,0"/>
+                                <UniformGrid Columns="4">
+                                    <RadioButton Name="rbLogSystem" Content="System" Foreground="White" IsChecked="True" VerticalAlignment="Center"/>
+                                    <RadioButton Name="rbLogSecurity" Content="Security" Foreground="White" VerticalAlignment="Center"/>
+                                    <RadioButton Name="rbLogApp" Content="Application" Foreground="White" VerticalAlignment="Center"/>
+                                    <RadioButton Name="rbLogPS" Content="PowerShell" Foreground="White" VerticalAlignment="Center"/>
+                                </UniformGrid>
+                            </DockPanel>
+                        </Border>
+
+                        <!-- Filter Bar -->
+                        <Border Grid.Row="3" Background="#111" CornerRadius="5" Padding="15,8" Margin="0,0,0,12" BorderBrush="#222" BorderThickness="1">
                             <DockPanel>
                                 <TextBlock Text="🔍 FILTER LOGS:" VerticalAlignment="Center" Margin="0,0,15,0" Foreground="#007ACC" FontWeight="Bold" FontSize="11"/>
                                 <TextBox Name="txtEventFilter" VerticalContentAlignment="Center" Background="Transparent" Foreground="White" BorderThickness="0" CaretBrush="White"/>
                             </DockPanel>
                         </Border>
 
-                        <Border Grid.Row="3" Background="#050505" CornerRadius="10" Padding="10" BorderBrush="#1A1A1D" BorderThickness="1">
-                            <DataGrid Name="dgEvents" AutoGenerateColumns="False" Background="Transparent" Foreground="#BBB" BorderThickness="0" IsReadOnly="True" RowHeight="35">
+                        <!-- Events DataGrid -->
+                        <Border Grid.Row="4" Background="#0D0D0F" CornerRadius="10" Padding="10" BorderBrush="#1A1A1D" BorderThickness="1">
+                            <DataGrid Name="dgEvents" AutoGenerateColumns="False" Background="Transparent" Foreground="#BBB" BorderThickness="0" IsReadOnly="True" SelectionMode="Single">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="TIME" Binding="{Binding Time}" Width="140"/>
+                                    <DataGridTextColumn Header="LEVEL" Binding="{Binding Level}" Width="90">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Level}" Value="Critical">
+                                                        <Setter Property="Foreground" Value="#FF4444"/>
+                                                        <Setter Property="FontWeight" Value="Bold"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Level}" Value="Error">
+                                                        <Setter Property="Foreground" Value="#FFA500"/>
+                                                        <Setter Property="FontWeight" Value="Bold"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Level}" Value="Warning">
+                                                        <Setter Property="Foreground" Value="#FFFF00"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
                                     <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="70"/>
-                                    <DataGridTextColumn Header="SOURCE" Binding="{Binding Source}" Width="180"/>
+                                    <DataGridTextColumn Header="SOURCE" Binding="{Binding Source}" Width="160"/>
                                     <DataGridTextColumn Header="MESSAGE" Binding="{Binding Message}" Width="*"/>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Border>
+
+                        <!-- Action Toolbar -->
+                        <UniformGrid Grid.Row="5" Columns="3" Margin="0,15,0,0">
+                            <Button Name="btnRefreshEvents" Content="🔄 REFRESH LOGS" Height="45" Margin="0,0,5,0" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                            <Button Name="btnExportEvents" Content="📥 EXPORT LOGS (CSV)" Height="45" Margin="5,0,5,0" Background="#1A1A25" Foreground="White" BorderThickness="0"/>
+                            <Button Name="btnClearLogChannel" Content="🧹 CLEAR CHANNEL" Height="45" Margin="5,0,0,0" Background="#B71C1C" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                        </UniformGrid>
                     </Grid>
                 </TabItem>
 
@@ -676,7 +720,7 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                             <!-- Controls Toolbar -->
                             <UniformGrid Grid.Row="3" Columns="6" Margin="0,10,0,0">
                                 <Button Name="btnSchedRefresh" Content="🔄 REFRESH" Height="38" Margin="0,0,2,0" Background="#1A1A25" Foreground="White" BorderThickness="0"/>
-                                <Button Name="btnSchedStart"   Content="▶️ RUN"     Height="38" Margin="2,0,2,0" Background="#0D47A1" Foreground="White" BorderThickness="0"/>
+                                <Button Name="btnSchedStart"   Content="▶️️ RUN"     Height="38" Margin="2,0,2,0" Background="#0D47A1" Foreground="White" BorderThickness="0"/>
                                 <Button Name="btnSchedStop"    Content="⏹️ STOP"    Height="38" Margin="2,0,2,0" Background="#B71C1C" Foreground="White" BorderThickness="0"/>
                                 <Button Name="btnSchedEnable"  Content="🔓 ENABLE"  Height="38" Margin="2,0,2,0" Background="#2E7D32" Foreground="White" BorderThickness="0"/>
                                 <Button Name="btnSchedDisable" Content="🔒 DISABLE" Height="38" Margin="2,0,2,0" Background="#424242" Foreground="White" BorderThickness="0"/>
@@ -1135,8 +1179,8 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                         <!-- Action Toolbar -->
                         <UniformGrid Grid.Row="4" Columns="4" Margin="0,15,0,0">
                             <Button Name="btnScanSoftware" Content="🔍 FULL INVENTORY SCAN" Height="45" Margin="0,0,5,0" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
-                            <Button Name="btnListUpdates" Content="🛡️ VIEW PENDING UPDATES" Height="45" Margin="5,0,5,0" Background="#1A1A25" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
-                            <Button Name="btnGetFeatures" Content="⚙️ WINDOWS FEATURES" Height="45" Margin="5,0,5,0" Background="#1A1A25" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                            <Button Name="btnListUpdates" Content="🛡️ VIEW PENDING UPDATES" Height="45" Margin="5,0,5,0" Background="#1A1A25" Foreground="White" BorderThickness="0"/>
+                            <Button Name="btnGetFeatures" Content="⚙️ WINDOWS FEATURES" Height="45" Margin="5,0,5,0" Background="#1A1A25" Foreground="White" BorderThickness="0"/>
                             <Button Name="btnUninstallApp" Content="❌ UNINSTALL SELECTED" Height="45" Margin="5,0,0,0" Background="#B71C1C" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
                         </UniformGrid>
                     </Grid>
@@ -1270,6 +1314,8 @@ $nodes = @(
     "dashDisk", "pbDisk", "dashPing", "stFW", "stAV", "stBit", 
     "stGW", "stDNS", "stUser", "stLogon", "stIdle", "dgEvents", "txtStatus", "elStatus",
     "cntCritical", "cntSecurity", "cntDisk", "cntApp", "txtEventFilter",
+    "rbLogSystem", "rbLogSecurity", "rbLogApp", "rbLogPS",
+    "btnRefreshEvents", "btnExportEvents", "btnClearLogChannel",
     "navScreen", "imgScreenshot", "btnTakeScreenshot",
     "dgNetstat", "btnNetstat", "btnIPConfig", "btnRoutePrint", "btnDNSFlush",
     "cntTotalSockets", "cntTcpActive", "cntListening", "cntUdpCount", "txtNetFilter",
@@ -1357,8 +1403,8 @@ $btnGlobalSync.Add_Click({
                 $secLogs = Get-WinEvent -FilterHashtable @{LogName = 'Security'; Id = 4625; StartTime = (Get-Date).AddDays(-1) } -ErrorAction SilentlyContinue
                 $diskLogs = Get-WinEvent -FilterHashtable @{LogName = 'System'; ProviderName = 'Disk'; StartTime = (Get-Date).AddDays(-7) } -ErrorAction SilentlyContinue
                 $appLogs = Get-WinEvent -FilterHashtable @{LogName = 'Application'; Level = 2 } -MaxEvents 50 -ErrorAction SilentlyContinue
-                $ev = Get-WinEvent -FilterHashtable @{LogName = 'System'; Level = 1, 2 } -MaxEvents 16 -ErrorAction SilentlyContinue | ForEach-Object {
-                    [PSCustomObject]@{ Time = $_.TimeCreated.ToString("HH:mm"); ID = $_.Id; Source = $_.ProviderName; Message = $_.Message.Trim() }
+                $ev = Get-WinEvent -FilterHashtable @{LogName = 'System'; Level = 1, 2, 3 } -MaxEvents 50 -ErrorAction SilentlyContinue | ForEach-Object {
+                    [PSCustomObject]@{ Time = $_.TimeCreated.ToString("HH:mm:ss"); ID = $_.Id; Source = $_.ProviderName; Level = $_.LevelDisplayName; Message = $_.Message.Trim() }
                 }
                 return @{
                     Success = $true;
@@ -1404,7 +1450,13 @@ $btnGlobalSync.Add_Click({
             $dashBuild.Text = "Build: $($data.Build)"        
             $stGW.Text = $data.GW; $stDNS.Text = $data.DNS
             $stUser.Text = $data.User; $stLogon.Text = "Logon: $($data.Logon)"; $stIdle.Text = "Idle: $($data.Idle)"
-            if ($data.Events) { $dgEvents.ItemsSource = @($data.Events) } else { $dgEvents.ItemsSource = @() }
+            if ($data.Events) { 
+                $global:FullEventList = $data.Events
+                $dgEvents.ItemsSource = @($data.Events) 
+            }
+            else { 
+                $dgEvents.ItemsSource = @() 
+            }
             $cntCritical.Text = $data.CritCount; $cntSecurity.Text = $data.SecCount; $cntDisk.Text = $data.DiskCount; $cntApp.Text = $data.AppCount
             $cntCritical.Foreground = if ([int]$data.CritCount -gt 0) { "#F44336" } else { "White" }
             $txtStatus.Text = "ONLINE"; $elStatus.Fill = "#2ECC71"; $statusDot.Fill = "#2ECC71"
@@ -1413,7 +1465,6 @@ $btnGlobalSync.Add_Click({
             $mainStatus.Text = "✅ Synchronization Successful."
             $mainStatus.Foreground = [System.Windows.Media.Brushes]::LightGreen
             
-            # Automatically refresh services on global sync
             $btnSvcRefresh.RaiseEvent((New-Object System.Windows.RoutedEventArgs([System.Windows.Controls.Button]::ClickEvent)))
         }
         else {
@@ -1424,12 +1475,99 @@ $btnGlobalSync.Add_Click({
         }
     })
 
+function Get-EventLogChannel ($channelName) {
+    $mainStatus.Text = "Harvesting $channelName event logs..."
+    $events = Invoke-RExec {
+        param($ch)
+        try {
+            Get-WinEvent -LogName $ch -MaxEvents 100 -ErrorAction Stop | ForEach-Object {
+                [PSCustomObject]@{
+                    Time    = $_.TimeCreated.ToString("yyyy-MM-dd HH:mm:ss")
+                    ID      = $_.Id
+                    Source  = $_.ProviderName
+                    Level   = if ($_.LevelDisplayName) { $_.LevelDisplayName } else { "Information" }
+                    Message = if ($_.Message) { $_.Message.Trim() } else { "No description available." }
+                }
+            }
+        }
+        catch { return $null }
+    } $channelName
+
+    if ($events) {
+        $global:FullEventList = $events
+        $dgEvents.ItemsSource = @($events)
+        $mainStatus.Text = "✅ Loaded $($events.Count) entries from $channelName log."
+        $mainStatus.Foreground = "LightGreen"
+    }
+    else {
+        $dgEvents.ItemsSource = @()
+        $mainStatus.Text = "⚠️ No events retrieved or channel '$channelName' is empty/inaccessible."
+        $mainStatus.Foreground = "Orange"
+    }
+}
+
+$rbLogSystem.Add_Checked({ if ($window.IsLoaded) { Get-EventLogChannel "System" } })
+$rbLogSecurity.Add_Checked({ if ($window.IsLoaded) { Get-EventLogChannel "Security" } })
+$rbLogApp.Add_Checked({ if ($window.IsLoaded) { Get-EventLogChannel "Application" } })
+$rbLogPS.Add_Checked({ if ($window.IsLoaded) { Get-EventLogChannel "Microsoft-Windows-PowerShell/Operational" } })
+
+$btnRefreshEvents.Add_Click({
+        $activeChannel = "System"
+        if ($rbLogSecurity.IsChecked) { $activeChannel = "Security" }
+        elseif ($rbLogApp.IsChecked) { $activeChannel = "Application" }
+        elseif ($rbLogPS.IsChecked) { $activeChannel = "Microsoft-Windows-PowerShell/Operational" }
+        Get-EventLogChannel $activeChannel
+    })
+
+$btnExportEvents.Add_Click({
+        if ($global:FullEventList) {
+            $saveDlg = New-Object Microsoft.Win32.SaveFileDialog
+            $saveDlg.Filter = "CSV Files (*.csv)|*.csv"
+            $saveDlg.FileName = "SystemEvents_Export.csv"
+            if ($saveDlg.ShowDialog() -eq $true) {
+                $global:FullEventList | Export-Csv -Path $saveDlg.FileName -NoTypeInformation
+                $mainStatus.Text = "✅ Events successfully exported to $($saveDlg.FileName)"
+                $mainStatus.Foreground = "LightGreen"
+            }
+        }
+        else {
+            [System.Windows.MessageBox]::Show("No event data available to export.", "Export Warning", "OK", "Warning")
+        }
+    })
+
+$btnClearLogChannel.Add_Click({
+        $activeChannel = "System"
+        if ($rbLogSecurity.IsChecked) { $activeChannel = "Security" }
+        elseif ($rbLogApp.IsChecked) { $activeChannel = "Application" }
+        elseif ($rbLogPS.IsChecked) { $activeChannel = "Microsoft-Windows-PowerShell/Operational" }
+
+        $confirm = [System.Windows.MessageBox]::Show("Are you sure you want to clear the entire '$activeChannel' event log channel? This action is irreversible.", "Confirm Clear Log", "YesNo", "Warning")
+        if ($confirm -eq "Yes") {
+            Invoke-RExec {
+                param($ch)
+                Clear-EventLog -LogName $ch -ErrorAction SilentlyContinue
+                wevtutil cl "$ch" 2>&1 | Out-Null
+            } $activeChannel
+            $mainStatus.Text = "🧹 Event log channel '$activeChannel' cleared."
+            Get-EventLogChannel $activeChannel
+        }
+    })
+
+$txtEventFilter.Add_TextChanged({
+        if ($global:FullEventList) {
+            $q = $txtEventFilter.Text.ToLower()
+            $dgEvents.ItemsSource = @($global:FullEventList | Where-Object { 
+                    $_.Message.ToLower() -like "*$q*" -or $_.Source.ToLower() -like "*$q*" -or $_.ID.ToString() -like "*$q*" -or $_.Level.ToLower() -like "*$q*"
+                })
+        }
+    })
+
 $btnEnableAllFW.Add_Click({
         Invoke-RExec { Set-NetFirewallProfile -Profile Domain, Public, Private -Enabled True }
         $mainStatus.Text = "✅ All Windows Firewall profiles enabled."
     })
 
-$btnDisableAllFW.Add_Click({$confirm = [System.Windows.MessageBox]::Show("Are you sure you want to disable ALL remote firewall profiles?", "Warning", "YesNo", "Warning")
+$btnDisableAllFW.Add_Click({ $confirm = [System.Windows.MessageBox]::Show("Are you sure you want to disable ALL remote firewall profiles?", "Warning", "YesNo", "Warning")
         if ($confirm -eq "Yes") {
             Invoke-RExec { Set-NetFirewallProfile -Profile Domain, Public, Private -Enabled False }
             $mainStatus.Text = "⚠️ All remote firewall profiles DISABLED."
@@ -1444,7 +1582,7 @@ $btnDisableAV.Add_Click({
         Invoke-RExec { Set-MpPreference -DisableRealtimeMonitoring $true }$mainStatus.Text = "⚠️ Windows Defender Real-Time Protection disabled."
     })
 
-$btnIsolateHost.Add_Click({$confirm = [System.Windows.MessageBox]::Show("ISOLATE HOST: This will block all inbound/outbound network traffic except existing WinRM session. Proceed?", "Host Isolation", "YesNo", "Error")
+$btnIsolateHost.Add_Click({ $confirm = [System.Windows.MessageBox]::Show("ISOLATE HOST: This will block all inbound/outbound network traffic except existing WinRM session. Proceed?", "Host Isolation", "YesNo", "Error")
         if ($confirm -eq "Yes") {
             Invoke-RExec {
                 New-NetFirewallRule -DisplayName "Sentinel_Isolation_Outbound" -Direction Outbound -Action Block -Priority 1 -Force | Out-Null
@@ -1459,9 +1597,9 @@ $btnDisableGuest.Add_Click({
         $mainStatus.Text = "✅ Local Guest account disabled."
     })
 
-$btnAuditAdmins.Add_Click({$admins = Invoke-RExec { Get-LocalGroupMember -Group "Administrators" | Select-Object Name, PrincipalSource }
+$btnAuditAdmins.Add_Click({ $admins = Invoke-RExec { Get-LocalGroupMember -Group "Administrators" | Select-Object Name, PrincipalSource }
         $msg = "Local Administrators Group Members:`n`n"
-        foreach ($a in $admins) {$msg += "• $($a.Name) ($($a.PrincipalSource))`n" }
+        foreach ($a in $admins) { $msg += "• $($a.Name) ($($a.PrincipalSource))`n" }
         [System.Windows.MessageBox]::Show($msg, "Local Admin Audit", "OK", "Information")
     })
 
@@ -1475,7 +1613,6 @@ $btnPurgeSessions.Add_Click({
         $mainStatus.Text = "🧹 Purged all disconnected user sessions."
     })
 
-# INCIDENT RESPONSE PRESET QUICK-RUNNERS
 $btnRunSecSMB.Add_Click({
         Invoke-RExec { Set-SmbServerConfiguration -EnableSMB1Protocol $false -Force }
         $mainStatus.Text = "✅ SMBv1 Protocol Disabled."
@@ -1662,12 +1799,12 @@ $btnSvcRefresh.Add_Click({
             $list = New-Object System.Collections.Generic.List[PSObject]
             foreach ($s in $svcs) {
                 $list.Add([PSCustomObject]@{
-                    Name      = $s.Name
-                    Display   = $s.DisplayName
-                    Status    = $s.State
-                    StartMode = $s.StartMode
-                    Account   = $s.StartName
-                })
+                        Name      = $s.Name
+                        Display   = $s.DisplayName
+                        Status    = $s.State
+                        StartMode = $s.StartMode
+                        Account   = $s.StartName
+                    })
             }
             $global:FullServiceList = $list
             $dgServices.ItemsSource = @($list)
@@ -1695,8 +1832,8 @@ $txtSvcFilter.Add_TextChanged({
         if ($global:FullServiceList) {
             $q = $txtSvcFilter.Text.ToLower()
             $dgServices.ItemsSource = @($global:FullServiceList | Where-Object { 
-                $_.Name.ToLower() -like "*$q*" -or $_.Display.ToLower() -like "*$q*" -or $_.Status.ToLower() -like "*$q*" 
-            })
+                    $_.Name.ToLower() -like "*$q*" -or $_.Display.ToLower() -like "*$q*" -or $_.Status.ToLower() -like "*$q*" 
+                })
         }
     })
 
@@ -1824,7 +1961,7 @@ $btnScanSoftware.Add_Click({
                                 Source      = "Win32"
                                 Location    = $key.InstallLocation
                                 UninstallID = $key.PSChildName
-                        })
+                            })
                     }
                 }
             }
@@ -1839,7 +1976,7 @@ $btnScanSoftware.Add_Click({
                         Source      = "Store"
                         Location    = $_.InstallLocation
                         UninstallID = $_.PackageFullName
-                })
+                    })
             }
             return $results | Sort-Object Status, Name
         }
@@ -1868,8 +2005,8 @@ $txtSoftwareFilter.Add_TextChanged({
         if ($global:FullSoftwareList) {
             $q = $txtSoftwareFilter.Text.ToLower()
             $dgSoftware.ItemsSource = @($global:FullSoftwareList | Where-Object { 
-                $_.Name.ToLower() -like "*$q*" -or $_.Publisher.ToLower() -like "*$q*" -or $_.Source.ToLower() -like "*$q*" 
-            })
+                    $_.Name.ToLower() -like "*$q*" -or $_.Publisher.ToLower() -like "*$q*" -or $_.Source.ToLower() -like "*$q*" 
+                })
         }
     })
 
@@ -1884,15 +2021,15 @@ $btnListUpdates.Add_Click({
                 $results = New-Object System.Collections.Generic.List[PSCustomObject]
                 foreach ($up in $searchResult.Updates) {
                     $results.Add([PSCustomObject]@{
-                        Status      = "PENDING"
-                        Name        = $up.Title
-                        Version     = "KB" + ($up.KBArticleIDs -join ", ")
-                        Publisher   = "Microsoft Update"
-                        Arch        = if ($up.Categories.Name -contains "Critical Updates") { "CRITICAL" } else { "Optional" }
-                        Source      = "WinUpdate"
-                        InstallDate = "Pending"
-                        UninstallID = $up.Identity.UpdateID
-                    })
+                            Status      = "PENDING"
+                            Name        = $up.Title
+                            Version     = "KB" + ($up.KBArticleIDs -join ", ")
+                            Publisher   = "Microsoft Update"
+                            Arch        = if ($up.Categories.Name -contains "Critical Updates") { "CRITICAL" } else { "Optional" }
+                            Source      = "WinUpdate"
+                            InstallDate = "Pending"
+                            UninstallID = $up.Identity.UpdateID
+                        })
                 }
                 return $results
             }
@@ -2225,21 +2362,6 @@ $btnCopyPreset10.Add_Click({ Set-ClipText 'Register-ScheduledTask -TaskName "Aut
 $btnCopyPreset11.Add_Click({ Set-ClipText 'Register-ScheduledTask -TaskName "UserSessionInit" -Trigger (New-ScheduledTaskTrigger -AtLogOn) -Action (New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-NoProfile -WindowStyle Hidden -File `"C:\Scripts\UserInit.ps1`"") -RunLevel Highest -Force' })
 $btnCopyPreset12.Add_Click({ Set-ClipText 'Register-ScheduledTask -TaskName "SysHealthTelemetry" -Trigger (New-ScheduledTaskTrigger -Weekly -DaysOfWeek Monday -At 07:00) -Action (New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-NoProfile -Command `\"Get-ComputerInfo | Export-Clixml -Path C:\Logs\HealthReport.xml`\"") -User "NT AUTHORITY\SYSTEM" -RunLevel Highest -Force' })
 
-$txtEventFilter.Add_TextChanged({
-        $view = [System.Windows.Data.CollectionViewSource]::GetDefaultView($dgEvents.ItemsSource)
-        if ($view) {
-            $searchTerm = $txtEventFilter.Text.ToLower()
-            $view.Filter = [Predicate[Object]] {
-                param($item)
-                if ([string]::IsNullOrWhiteSpace($searchTerm)) { return $true }
-                return ($item.Message -like "*$searchTerm*") -or 
-                ($item.Source -like "*$searchTerm*") -or 
-                ($item.ID.ToString() -like "*$searchTerm*")
-            }
-            $view.Refresh()
-        }
-    })
-
 $txtProcFilter.Add_TextChanged({
         $view = [System.Windows.Data.CollectionViewSource]::GetDefaultView($dgProcesses.ItemsSource)
         if ($view) {
@@ -2261,10 +2383,10 @@ $txtNetFilter.Add_TextChanged({
                 param($item)
                 if ([string]::IsNullOrWhiteSpace($searchTerm)) { return $true }
                 return ($item.ProcessName -like "*$searchTerm*") -or 
-                       ($item.RemoteAddress -like "*$searchTerm*") -or 
-                       ($item.Hostname -like "*$searchTerm*") -or 
-                       ($item.State -like "*$searchTerm*") -or
-                       ($item.Protocol -like "*$searchTerm*")
+                ($item.RemoteAddress -like "*$searchTerm*") -or 
+                ($item.Hostname -like "*$searchTerm*") -or 
+                ($item.State -like "*$searchTerm*") -or
+                ($item.Protocol -like "*$searchTerm*")
             }
             $view.Refresh()
         }
@@ -2601,7 +2723,7 @@ $btnUninstallDriver.Add_Click({
         $msg = "Confirm uninstallation of:`n$($selected.FriendlyName)"
         $ans = [System.Windows.MessageBox]::Show($msg, "Warning", "YesNo", "Exclamation")
         if ($ans -eq "Yes") {
-            $id =$selected.InstanceId
+            $id = $selected.InstanceId
             $res = Invoke-RExec {
                 param($targetId)$process = Start-Process pnputil -ArgumentList "/remove-device ""$targetId""" -Wait -PassThru -WindowStyle Hidden
                 if ($process.ExitCode -eq 0) { return "OK" } else { return "Error Code: $($process.ExitCode)" }
@@ -2618,8 +2740,8 @@ $btnUninstallDriver.Add_Click({
 
 $txtDriverFilter.Add_TextChanged({
         if ($global:FullDriverList) {
-            $q =$txtDriverFilter.Text
-            $dgDrivers.ItemsSource = @($global:FullDriverList | Where-Object { $_.FriendlyName -match$q -or $_.Class -match$q })
+            $q = $txtDriverFilter.Text
+            $dgDrivers.ItemsSource = @($global:FullDriverList | Where-Object { $_.FriendlyName -match $q -or $_.Class -match $q })
         }
     })
 
