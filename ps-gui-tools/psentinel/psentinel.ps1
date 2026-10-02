@@ -310,21 +310,67 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                 <!-- TAB 3: FILE EXPLORER -->
                 <TabItem>
                     <Grid Margin="30">
-                        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
-                        <TextBlock Text="Remote File Explorer" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
-                        <DockPanel Grid.Row="1" Margin="0,0,0,15">
-                            <Button Name="btnGoUp" Content="DIR UP" Width="80" DockPanel.Dock="Left" Margin="0,0,5,0"/>
-                            <Button Name="btnListFiles" Content="BROWSE" Width="100" DockPanel.Dock="Right" Background="#007ACC" Foreground="White"/>
-                            <TextBox Name="txtFilePath" Text="C:\" VerticalContentAlignment="Center" Padding="10" Background="#111114" Foreground="White" BorderBrush="#333333"/>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0" Margin="0,0,0,15">
+                            <TextBlock Text="Remote File Explorer &amp; Manager" FontSize="26" FontWeight="ExtraBold" Foreground="White"/>
+                            <TextBlock Text="Secure remote directory traversal, file management, upload, download, and auditing controls." Foreground="#666"/>
+                        </StackPanel>
+
+                        <!-- Summary Cards -->
+                        <UniformGrid Grid.Row="1" Columns="3" Height="80" Margin="0,0,0,15">
+                            <Border Background="#121214" Margin="4" CornerRadius="8" BorderBrush="#1A1A1D" BorderThickness="1">
+                                <StackPanel VerticalAlignment="Center" Margin="15,0">
+                                    <TextBlock Text="CURRENT DIRECTORY ITEMS" Foreground="#007ACC" FontSize="10" FontWeight="Bold"/>
+                                    <TextBlock Name="cntFileTotal" Text="0" FontSize="24" FontWeight="Bold" Foreground="White"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Background="#121214" Margin="4" CornerRadius="8" BorderBrush="#1A1A1D" BorderThickness="1">
+                                <StackPanel VerticalAlignment="Center" Margin="15,0">
+                                    <TextBlock Text="FOLDERS" Foreground="#2ECC71" FontSize="10" FontWeight="Bold"/>
+                                    <TextBlock Name="cntFileDirs" Text="0" FontSize="24" FontWeight="Bold" Foreground="White"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Background="#121214" Margin="4" CornerRadius="8" BorderBrush="#1A1A1D" BorderThickness="1">
+                                <StackPanel VerticalAlignment="Center" Margin="15,0">
+                                    <TextBlock Text="FILES" Foreground="#E65100" FontSize="10" FontWeight="Bold"/>
+                                    <TextBlock Name="cntFileFiles" Text="0" FontSize="24" FontWeight="Bold" Foreground="White"/>
+                                </StackPanel>
+                            </Border>
+                        </UniformGrid>
+
+                        <!-- Path & Navigation Bar -->
+                        <DockPanel Grid.Row="2" Margin="0,0,0,12">
+                            <Button Name="btnGoUp" Content="📁 DIR UP" Width="90" DockPanel.Dock="Left" Margin="0,0,8,0" Background="#1A1A25" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                            <Button Name="btnListFiles" Content="📂 BROWSE" Width="110" DockPanel.Dock="Right" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                            <TextBox Name="txtFilePath" Text="C:\" VerticalContentAlignment="Center" Padding="10" Background="#111114" Foreground="White" BorderBrush="#333333" FontSize="13"/>
                         </DockPanel>
-                        <DataGrid Name="dgFiles" Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
-                                <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="120"/>
-                                <DataGridTextColumn Header="Size (MB)" Binding="{Binding Size}" Width="120"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        <Button Name="btnDeleteFile" Grid.Row="3" Content="PERMANENTLY DELETE" Height="45" Background="#B71C1C" Foreground="White" Margin="0,15,0,0"/>
+
+                        <!-- File DataGrid -->
+                        <Border Grid.Row="3" Background="#0D0D0F" CornerRadius="10" Padding="10" BorderBrush="#1A1A1D" BorderThickness="1">
+                            <DataGrid Name="dgFiles" AutoGenerateColumns="False" Background="Transparent" Foreground="#BBB" BorderThickness="0" IsReadOnly="True" SelectionMode="Single">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="NAME" Binding="{Binding Name}" Width="*"/>
+                                    <DataGridTextColumn Header="TYPE" Binding="{Binding Type}" Width="100"/>
+                                    <DataGridTextColumn Header="SIZE (MB)" Binding="{Binding Size}" Width="110"/>
+                                    <DataGridTextColumn Header="LAST MODIFIED" Binding="{Binding LastModified}" Width="160"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Border>
+
+                        <!-- Action Toolbar -->
+                        <UniformGrid Grid.Row="4" Columns="4" Margin="0,15,0,0">
+                            <Button Name="btnFileOpen" Content="📂 OPEN / ENTER" Height="45" Margin="0,0,5,0" Background="#0D47A1" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                            <Button Name="btnFileDownload" Content="⬇️ DOWNLOAD FILE" Height="45" Margin="5,0,5,0" Background="#1A1A25" Foreground="White" BorderThickness="0"/>
+                            <Button Name="btnFileNewFolder" Content="➕ NEW FOLDER" Height="45" Margin="5,0,5,0" Background="#2E7D32" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                            <Button Name="btnDeleteFile" Content="🗑️ DELETE ITEM" Height="45" Margin="5,0,0,0" Background="#B71C1C" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                        </UniformGrid>
                     </Grid>
                 </TabItem>
 
@@ -1115,6 +1161,8 @@ $nodes = @(
     "dgNetstat", "btnNetstat", "btnIPConfig", "btnRoutePrint", "btnDNSFlush",
     "cntTotalSockets", "cntTcpActive", "cntListening", "cntUdpCount", "txtNetFilter",
     "btnRenewIP", "btnArpTable", "btnNetSessions", "btnTraceRoute", "txtNetOutput",
+    "dgFiles", "txtFilePath", "btnGoUp", "btnListFiles", "btnFileOpen", "btnFileDownload", "btnFileNewFolder", "btnDeleteFile",
+    "cntFileTotal", "cntFileDirs", "cntFileFiles",
     "dgSoftware", "btnScanSoftware", "btnListUpdates", "btnGetFeatures", "btnUninstallApp",
     "dgDrivers", "txtDriverFilter", "btnScanDrivers",
     "dgProcesses", "txtProcFilter", "btnRefreshProc", "btnKill", "btnUninstallDriver",
@@ -1375,24 +1423,113 @@ $btnKill.Add_Click({
 
 $btnListFiles.Add_Click({
         $path = $txtFilePath.Text
-        $mainStatus.Text = "Fetching file list..."
+        if ([string]::IsNullOrWhiteSpace($path)) { $path = "C:\"; $txtFilePath.Text = $path }
+        $mainStatus.Text = "Fetching directory items from $path..."
         $results = Invoke-RExec { 
             param($p) 
             Get-ChildItem -Path $p -ErrorAction SilentlyContinue | ForEach-Object { 
                 [PSCustomObject]@{ 
-                    Name = $_.Name
-                    Type = if ($_.PSIsContainer) { "Folder" } else { "File" }
-                    Size = if ($_.PSIsContainer) { "--" } else { [math]::Round($_.Length / 1MB, 2) }
+                    Name         = $_.Name
+                    Type         = if ($_.PSIsContainer) { "Folder" } else { "File" }
+                    Size         = if ($_.PSIsContainer) { "--" } else { [math]::Round($_.Length / 1MB, 2) }
+                    LastModified = $_.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss")
+                    FullName     = $_.FullName
+                    IsContainer  = $_.PSIsContainer
                 } 
             } 
         } $path
         if ($results) {
-            $dgFiles.ItemsSource = $null
-            $dgFiles.ItemsSource = [System.Collections.ArrayList]@($results)
-            $mainStatus.Text = "Displayed $($results.Count) items."
+            $global:FullFileList = $results
+            $dgFiles.ItemsSource = @($results)
+            $totalCount = $results.Count
+            $dirCount = ($results | Where-Object { $_.IsContainer }).Count
+            $fileCount = $totalCount - $dirCount
+            $cntFileTotal.Text = [string]$totalCount
+            $cntFileDirs.Text = [string]$dirCount
+            $cntFileFiles.Text = [string]$fileCount
+            $mainStatus.Text = "Displayed $totalCount items for $path."
         }
         else {
+            $dgFiles.ItemsSource = @()
+            $cntFileTotal.Text = "0"; $cntFileDirs.Text = "0"; $cntFileFiles.Text = "0"
             $mainStatus.Text = "No items found or path inaccessible."
+        }
+    })
+
+$btnGoUp.Add_Click({
+        $currentPath = $txtFilePath.Text.TrimEnd('\')
+        if ($currentPath.Length -gt 3) {
+            $parent = Split-Path $currentPath -Parent
+            if ($parent.Length -eq 2) { $parent += "\" }
+            $txtFilePath.Text = $parent
+            $btnListFiles.RaiseEvent((New-Object System.Windows.RoutedEventArgs([System.Windows.Controls.Button]::ClickEvent)))
+        }
+    })
+
+$dgFiles.Add_MouseDoubleClick({
+        $sel = $dgFiles.SelectedItem
+        if ($sel -and $sel.IsContainer) {
+            $txtFilePath.Text = $sel.FullName
+            $btnListFiles.RaiseEvent((New-Object System.Windows.RoutedEventArgs([System.Windows.Controls.Button]::ClickEvent)))
+        }
+    })
+
+$btnFileOpen.Add_Click({
+        $sel = $dgFiles.SelectedItem
+        if ($sel) {
+            if ($sel.IsContainer) {
+                $txtFilePath.Text = $sel.FullName
+                $btnListFiles.RaiseEvent((New-Object System.Windows.RoutedEventArgs([System.Windows.Controls.Button]::ClickEvent)))
+            }
+            else {
+                [System.Windows.MessageBox]::Show("Selected File: $($sel.Name)`nSize: $($sel.Size) MB`nModified: $($sel.LastModified)", "File Properties", "OK", "Information")
+            }
+        }
+    })
+
+$btnFileDownload.Add_Click({
+        $sel = $dgFiles.SelectedItem
+        if ($sel -and -not $sel.IsContainer) {
+            $saveDlg = New-Object Microsoft.Win32.SaveFileDialog
+            $saveDlg.FileName = $sel.Name
+            if ($saveDlg.ShowDialog() -eq $true) {
+                $mainStatus.Text = "Downloading $($sel.Name)..."
+                $bytes = Invoke-RExec { param($fPath) [System.IO.File]::ReadAllBytes($fPath) } $sel.FullName
+                if ($bytes) {
+                    [System.IO.File]::WriteAllBytes($saveDlg.FileName, $bytes)
+                    $mainStatus.Text = "✅ File downloaded successfully to $($saveDlg.FileName)"
+                    $mainStatus.Foreground = "LightGreen"
+                }
+                else {
+                    $mainStatus.Text = "❌ Download failed."
+                    $mainStatus.Foreground = "Red"
+                }
+            }
+        }
+        else {
+            [System.Windows.MessageBox]::Show("Please select a valid file to download.", "Download Error", "OK", "Warning")
+        }
+    })
+
+$btnFileNewFolder.Add_Click({
+        $folderName = [Microsoft.VisualBasic.Interaction]::InputBox("Enter name for new remote directory:", "Create Directory", "NewFolder")
+        if (-not [string]::IsNullOrWhiteSpace($folderName)) {
+            $targetPath = Join-Path $txtFilePath.Text $folderName
+            Invoke-RExec { param($p) New-Item -Path $p -ItemType Directory -Force | Out-Null } $targetPath
+            $mainStatus.Text = "✅ Created directory: $targetPath"
+            $btnListFiles.RaiseEvent((New-Object System.Windows.RoutedEventArgs([System.Windows.Controls.Button]::ClickEvent)))
+        }
+    })
+
+$btnDeleteFile.Add_Click({
+        $sel = $dgFiles.SelectedItem
+        if ($sel) {
+            $confirm = [System.Windows.MessageBox]::Show("Permanently delete $($sel.Type.ToLower()) '$($sel.Name)'?", "Confirm Deletion", "YesNo", "Warning")
+            if ($confirm -eq "Yes") {
+                Invoke-RExec { param($fPath, $isDir) if ($isDir) { Remove-Item -Path $fPath -Recurse -Force } else { Remove-Item -Path $fPath -Force } } $sel.FullName $sel.IsContainer
+                $mainStatus.Text = "🗑️ Item deleted successfully."
+                $btnListFiles.RaiseEvent((New-Object System.Windows.RoutedEventArgs([System.Windows.Controls.Button]::ClickEvent)))
+            }
         }
     })
 
