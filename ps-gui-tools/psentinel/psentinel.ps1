@@ -909,22 +909,92 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                     </Grid>
                 </TabItem>
 
-                <!-- TAB 7: SERVICES -->
+                <!-- TAB 7: SYSTEM SERVICES -->
                 <TabItem>
                     <Grid Margin="30">
-                        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
-                        <TextBlock Text="System Services" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
-                        <DataGrid Name="dgServices" Grid.Row="1" AutoGenerateColumns="False">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="200"/>
-                                <DataGridTextColumn Header="Display Name" Binding="{Binding Display}" Width="*"/>
-                                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="120"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        <UniformGrid Grid.Row="2" Columns="3" Margin="0,15,0,0">
-                            <Button Name="btnSvcStart" Content="START" Height="45" Background="#2E7D32" Foreground="White" Margin="0,0,5,0"/>
-                            <Button Name="btnSvcStop" Content="STOP" Height="45" Background="#B71C1C" Foreground="White" Margin="5,0,5,0"/>
-                            <Button Name="btnSvcRefresh" Content="REFRESH" Height="45" Margin="5,0,0,0"/>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0" Margin="0,0,0,15">
+                            <TextBlock Text="System Services &amp; Daemon Management" FontSize="26" FontWeight="ExtraBold" Foreground="White"/>
+                            <TextBlock Text="Monitor, start, stop, configure startup modes, and audit Windows background service daemons." Foreground="#666"/>
+                        </StackPanel>
+
+                        <!-- Summary Cards -->
+                        <UniformGrid Grid.Row="1" Columns="4" Height="80" Margin="0,0,0,15">
+                            <Border Background="#121214" Margin="4" CornerRadius="8" BorderBrush="#1A1A1D" BorderThickness="1">
+                                <StackPanel VerticalAlignment="Center" Margin="15,0">
+                                    <TextBlock Text="TOTAL SERVICES" Foreground="#007ACC" FontSize="10" FontWeight="Bold"/>
+                                    <TextBlock Name="cntSvcTotal" Text="0" FontSize="24" FontWeight="Bold" Foreground="White"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Background="#121214" Margin="4" CornerRadius="8" BorderBrush="#1A1A1D" BorderThickness="1">
+                                <StackPanel VerticalAlignment="Center" Margin="15,0">
+                                    <TextBlock Text="RUNNING SERVICES" Foreground="#2ECC71" FontSize="10" FontWeight="Bold"/>
+                                    <TextBlock Name="cntSvcRunning" Text="0" FontSize="24" FontWeight="Bold" Foreground="White"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Background="#121214" Margin="4" CornerRadius="8" BorderBrush="#1A1A1D" BorderThickness="1">
+                                <StackPanel VerticalAlignment="Center" Margin="15,0">
+                                    <TextBlock Text="STOPPED SERVICES" Foreground="#F44336" FontSize="10" FontWeight="Bold"/>
+                                    <TextBlock Name="cntSvcStopped" Text="0" FontSize="24" FontWeight="Bold" Foreground="White"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Background="#121214" Margin="4" CornerRadius="8" BorderBrush="#1A1A1D" BorderThickness="1">
+                                <StackPanel VerticalAlignment="Center" Margin="15,0">
+                                    <TextBlock Text="AUTO-START DAEMONS" Foreground="#E65100" FontSize="10" FontWeight="Bold"/>
+                                    <TextBlock Name="cntSvcAuto" Text="0" FontSize="24" FontWeight="Bold" Foreground="White"/>
+                                </StackPanel>
+                            </Border>
+                        </UniformGrid>
+
+                        <!-- Filter Bar -->
+                        <Border Grid.Row="2" Background="#111" CornerRadius="5" Padding="15,8" Margin="0,0,0,12" BorderBrush="#222" BorderThickness="1">
+                            <DockPanel>
+                                <TextBlock Text="🔍 FILTER SERVICES:" VerticalAlignment="Center" Margin="0,0,15,0" Foreground="#007ACC" FontWeight="Bold" FontSize="11"/>
+                                <TextBox Name="txtSvcFilter" VerticalContentAlignment="Center" Background="Transparent" Foreground="White" BorderThickness="0" CaretBrush="White"/>
+                            </DockPanel>
+                        </Border>
+
+                        <!-- Services DataGrid -->
+                        <Border Grid.Row="3" Background="#0D0D0F" CornerRadius="10" Padding="10" BorderBrush="#1A1A1D" BorderThickness="1">
+                            <DataGrid Name="dgServices" AutoGenerateColumns="False" Background="Transparent" Foreground="#BBB" BorderThickness="0" IsReadOnly="True" SelectionMode="Single">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="STATUS" Binding="{Binding Status}" Width="90">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Status}" Value="Running">
+                                                        <Setter Property="Foreground" Value="#2ECC71"/>
+                                                        <Setter Property="FontWeight" Value="Bold"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Status}" Value="Stopped">
+                                                        <Setter Property="Foreground" Value="#F44336"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="SERVICE NAME" Binding="{Binding Name}" Width="160"/>
+                                    <DataGridTextColumn Header="DISPLAY NAME" Binding="{Binding Display}" Width="*"/>
+                                    <DataGridTextColumn Header="STARTUP TYPE" Binding="{Binding StartMode}" Width="110"/>
+                                    <DataGridTextColumn Header="ACCOUNT" Binding="{Binding Account}" Width="130"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Border>
+
+                        <!-- Action Toolbar -->
+                        <UniformGrid Grid.Row="4" Columns="5" Margin="0,15,0,0">
+                            <Button Name="btnSvcRefresh" Content="🔄 REFRESH LIST" Height="45" Margin="0,0,4,0" Background="#1A1A25" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                            <Button Name="btnSvcStart"   Content="▶️ START"      Height="45" Margin="4,0,4,0" Background="#2E7D32" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                            <Button Name="btnSvcStop"    Content="⏹️ STOP"       Height="45" Margin="4,0,4,0" Background="#B71C1C" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                            <Button Name="btnSvcRestart" Content="🔄 RESTART"   Height="45" Margin="4,0,4,0" Background="#0D47A1" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                            <Button Name="btnSvcAuto"    Content="⚙️ SET AUTO"   Height="45" Margin="4,0,0,0" Background="#E65100" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
                         </UniformGrid>
                     </Grid>
                 </TabItem>
@@ -1163,6 +1233,8 @@ $nodes = @(
     "btnRenewIP", "btnArpTable", "btnNetSessions", "btnTraceRoute", "txtNetOutput",
     "dgFiles", "txtFilePath", "btnGoUp", "btnListFiles", "btnFileOpen", "btnFileDownload", "btnFileNewFolder", "btnDeleteFile",
     "cntFileTotal", "cntFileDirs", "cntFileFiles",
+    "dgServices", "txtSvcFilter", "btnSvcRefresh", "btnSvcStart", "btnSvcStop", "btnSvcRestart", "btnSvcAuto",
+    "cntSvcTotal", "cntSvcRunning", "cntSvcStopped", "cntSvcAuto",
     "dgSoftware", "btnScanSoftware", "btnListUpdates", "btnGetFeatures", "btnUninstallApp",
     "dgDrivers", "txtDriverFilter", "btnScanDrivers",
     "dgProcesses", "txtProcFilter", "btnRefreshProc", "btnKill", "btnUninstallDriver",
@@ -1296,6 +1368,9 @@ $btnGlobalSync.Add_Click({
             $lblSubStatus.Text = "Online | User: $($data.User) | Time:$(Get-Date -Format "HH:mm:ss")"
             $mainStatus.Text = "✅ Synchronization Successful."
             $mainStatus.Foreground = [System.Windows.Media.Brushes]::LightGreen
+            
+            # Automatically refresh services on global sync
+            $btnSvcRefresh.RaiseEvent((New-Object System.Windows.RoutedEventArgs([System.Windows.Controls.Button]::ClickEvent)))
         }
         else {
             $txtStatus.Text = "ERROR"; $elStatus.Fill = "#F44336"; $statusDot.Fill = "#F44336"
@@ -1310,7 +1385,7 @@ $btnEnableAllFW.Add_Click({
         $mainStatus.Text = "✅ All Windows Firewall profiles enabled."
     })
 
-$btnDisableAllFW.Add_Click({ $confirm = [System.Windows.MessageBox]::Show("Are you sure you want to disable ALL remote firewall profiles?", "Warning", "YesNo", "Warning")
+$btnDisableAllFW.Add_Click({$confirm = [System.Windows.MessageBox]::Show("Are you sure you want to disable ALL remote firewall profiles?", "Warning", "YesNo", "Warning")
         if ($confirm -eq "Yes") {
             Invoke-RExec { Set-NetFirewallProfile -Profile Domain, Public, Private -Enabled False }
             $mainStatus.Text = "⚠️ All remote firewall profiles DISABLED."
@@ -1325,7 +1400,7 @@ $btnDisableAV.Add_Click({
         Invoke-RExec { Set-MpPreference -DisableRealtimeMonitoring $true }$mainStatus.Text = "⚠️ Windows Defender Real-Time Protection disabled."
     })
 
-$btnIsolateHost.Add_Click({ $confirm = [System.Windows.MessageBox]::Show("ISOLATE HOST: This will block all inbound/outbound network traffic except existing WinRM session. Proceed?", "Host Isolation", "YesNo", "Error")
+$btnIsolateHost.Add_Click({$confirm = [System.Windows.MessageBox]::Show("ISOLATE HOST: This will block all inbound/outbound network traffic except existing WinRM session. Proceed?", "Host Isolation", "YesNo", "Error")
         if ($confirm -eq "Yes") {
             Invoke-RExec {
                 New-NetFirewallRule -DisplayName "Sentinel_Isolation_Outbound" -Direction Outbound -Action Block -Priority 1 -Force | Out-Null
@@ -1340,9 +1415,9 @@ $btnDisableGuest.Add_Click({
         $mainStatus.Text = "✅ Local Guest account disabled."
     })
 
-$btnAuditAdmins.Add_Click({ $admins = Invoke-RExec { Get-LocalGroupMember -Group "Administrators" | Select-Object Name, PrincipalSource }
+$btnAuditAdmins.Add_Click({$admins = Invoke-RExec { Get-LocalGroupMember -Group "Administrators" | Select-Object Name, PrincipalSource }
         $msg = "Local Administrators Group Members:`n`n"
-        foreach ($a in $admins) { $msg += "• $($a.Name) ($($a.PrincipalSource))`n" }
+        foreach ($a in $admins) {$msg += "• $($a.Name) ($($a.PrincipalSource))`n" }
         [System.Windows.MessageBox]::Show($msg, "Local Admin Audit", "OK", "Information")
     })
 
@@ -1529,6 +1604,148 @@ $btnDeleteFile.Add_Click({
                 Invoke-RExec { param($fPath, $isDir) if ($isDir) { Remove-Item -Path $fPath -Recurse -Force } else { Remove-Item -Path $fPath -Force } } $sel.FullName $sel.IsContainer
                 $mainStatus.Text = "🗑️ Item deleted successfully."
                 $btnListFiles.RaiseEvent((New-Object System.Windows.RoutedEventArgs([System.Windows.Controls.Button]::ClickEvent)))
+            }
+        }
+    })
+
+$btnSvcRefresh.Add_Click({
+        $mainStatus.Text = "Scanning remote Windows services..."
+        $svcs = Invoke-RExec {
+            Get-CimInstance Win32_Service | Select-Object Name, DisplayName, State, StartMode, StartName
+        }
+        if ($svcs) {
+            $list = New-Object System.Collections.Generic.List[PSObject]
+            foreach ($s in $svcs) {
+                $list.Add([PSCustomObject]@{
+                    Name      = $s.Name
+                    Display   = $s.DisplayName
+                    Status    = $s.State
+                    StartMode = $s.StartMode
+                    Account   = $s.StartName
+                })
+            }
+            $global:FullServiceList = $list
+            $dgServices.ItemsSource = @($list)
+            
+            $total = $list.Count
+            $running = ($list | Where-Object { $_.Status -eq "Running" }).Count
+            $stopped = ($list | Where-Object { $_.Status -eq "Stopped" }).Count
+            $auto = ($list | Where-Object { $_.StartMode -eq "Auto" }).Count
+
+            $cntSvcTotal.Text = [string]$total
+            $cntSvcRunning.Text = [string]$running
+            $cntSvcStopped.Text = [string]$stopped
+            $cntSvcAuto.Text = [string]$auto
+
+            $mainStatus.Text = "✅ Services audit complete: $total total ($running running)."
+            $mainStatus.Foreground = "LightGreen"
+        }
+        else {
+            $mainStatus.Text = "❌ Failed to retrieve Windows services."
+            $mainStatus.Foreground = "Red"
+        }
+    })
+
+$txtSvcFilter.Add_TextChanged({
+        if ($global:FullServiceList) {
+            $q = $txtSvcFilter.Text.ToLower()
+            $dgServices.ItemsSource = @($global:FullServiceList | Where-Object { 
+                $_.Name.ToLower() -like "*$q*" -or $_.Display.ToLower() -like "*$q*" -or $_.Status.ToLower() -like "*$q*" 
+            })
+        }
+    })
+
+$btnSvcStart.Add_Click({
+        $sel = $dgServices.SelectedItem
+        if ($sel) {
+            $svcName = $sel.Name
+            $mainStatus.Text = "Starting service: $svcName..."
+            $res = Invoke-RExec {
+                param($name)
+                try {
+                    Start-Service -Name $name -ErrorAction Stop
+                    return "SUCCESS"
+                }
+                catch { return $_.Exception.Message }
+            } $svcName
+            if ($res -eq "SUCCESS") {
+                $mainStatus.Text = "✅ Service '$svcName' started successfully."
+                $btnSvcRefresh.RaiseEvent((New-Object System.Windows.RoutedEventArgs([System.Windows.Controls.Button]::ClickEvent)))
+            }
+            else {
+                $mainStatus.Text = "❌ Failed to start service: $res"
+            }
+        }
+    })
+
+$btnSvcStop.Add_Click({
+        $sel = $dgServices.SelectedItem
+        if ($sel) {
+            $svcName = $sel.Name
+            $confirm = [System.Windows.MessageBox]::Show("Are you sure you want to stop service '$svcName'?", "Confirm Stop", "YesNo", "Warning")
+            if ($confirm -eq "Yes") {
+                $mainStatus.Text = "Stopping service: $svcName..."
+                $res = Invoke-RExec {
+                    param($name)
+                    try {
+                        Stop-Service -Name $name -Force -ErrorAction Stop
+                        return "SUCCESS"
+                    }
+                    catch { return $_.Exception.Message }
+                } $svcName
+                if ($res -eq "SUCCESS") {
+                    $mainStatus.Text = "✅ Service '$svcName' stopped successfully."
+                    $btnSvcRefresh.RaiseEvent((New-Object System.Windows.RoutedEventArgs([System.Windows.Controls.Button]::ClickEvent)))
+                }
+                else {
+                    $mainStatus.Text = "❌ Failed to stop service: $res"
+                }
+            }
+        }
+    })
+
+$btnSvcRestart.Add_Click({
+        $sel = $dgServices.SelectedItem
+        if ($sel) {
+            $svcName = $sel.Name
+            $mainStatus.Text = "Restarting service: $svcName..."
+            $res = Invoke-RExec {
+                param($name)
+                try {
+                    Restart-Service -Name $name -Force -ErrorAction Stop
+                    return "SUCCESS"
+                }
+                catch { return $_.Exception.Message }
+            } $svcName
+            if ($res -eq "SUCCESS") {
+                $mainStatus.Text = "✅ Service '$svcName' restarted successfully."
+                $btnSvcRefresh.RaiseEvent((New-Object System.Windows.RoutedEventArgs([System.Windows.Controls.Button]::ClickEvent)))
+            }
+            else {
+                $mainStatus.Text = "❌ Failed to restart service: $res"
+            }
+        }
+    })
+
+$btnSvcAuto.Add_Click({
+        $sel = $dgServices.SelectedItem
+        if ($sel) {
+            $svcName = $sel.Name
+            $mainStatus.Text = "Configuring start mode for $svcName..."
+            $res = Invoke-RExec {
+                param($name)
+                try {
+                    Set-Service -Name $name -StartupType Automatic -ErrorAction Stop
+                    return "SUCCESS"
+                }
+                catch { return $_.Exception.Message }
+            } $svcName
+            if ($res -eq "SUCCESS") {
+                $mainStatus.Text = "✅ Service '$svcName' startup type set to Automatic."
+                $btnSvcRefresh.RaiseEvent((New-Object System.Windows.RoutedEventArgs([System.Windows.Controls.Button]::ClickEvent)))
+            }
+            else {
+                $mainStatus.Text = "❌ Failed to change startup type: $res"
             }
         }
     })
@@ -1787,10 +2004,10 @@ $txtNetFilter.Add_TextChanged({
                 param($item)
                 if ([string]::IsNullOrWhiteSpace($searchTerm)) { return $true }
                 return ($item.ProcessName -like "*$searchTerm*") -or 
-                ($item.RemoteAddress -like "*$searchTerm*") -or 
-                ($item.Hostname -like "*$searchTerm*") -or 
-                ($item.State -like "*$searchTerm*") -or
-                ($item.Protocol -like "*$searchTerm*")
+                       ($item.RemoteAddress -like "*$searchTerm*") -or 
+                       ($item.Hostname -like "*$searchTerm*") -or 
+                       ($item.State -like "*$searchTerm*") -or
+                       ($item.Protocol -like "*$searchTerm*")
             }
             $view.Refresh()
         }
@@ -1987,11 +2204,6 @@ $btnEnableTools.Add_Click({
     })
 
 $btnRunShell.Add_Click({ $cmd = $txtCommand.Text; $txtOutput.Text = Invoke-RExec { param($c) Invoke-Expression $c 2>&1 | Out-String } $cmd })
-
-$btnSvcRefresh.Add_Click({
-        $svcs = Invoke-RExec { Get-Service | Select-Object Name, DisplayName, Status }
-        $dgServices.ItemsSource = foreach ($s in $svcs) { [PSCustomObject]@{ Name = $s.Name; Display = $s.DisplayName; Status = $s.Status.ToString() } }
-    })
 
 $btnTakeScreenshot.Add_Click({
         $mainStatus.Text = "Requesting Remote GDI+ Capture..."
@@ -2335,7 +2547,7 @@ $btnUninstallDriver.Add_Click({
         $msg = "Confirm uninstallation of:`n$($selected.FriendlyName)"
         $ans = [System.Windows.MessageBox]::Show($msg, "Warning", "YesNo", "Exclamation")
         if ($ans -eq "Yes") {
-            $id = $selected.InstanceId
+            $id =$selected.InstanceId
             $res = Invoke-RExec {
                 param($targetId)$process = Start-Process pnputil -ArgumentList "/remove-device ""$targetId""" -Wait -PassThru -WindowStyle Hidden
                 if ($process.ExitCode -eq 0) { return "OK" } else { return "Error Code: $($process.ExitCode)" }
@@ -2352,8 +2564,8 @@ $btnUninstallDriver.Add_Click({
 
 $txtDriverFilter.Add_TextChanged({
         if ($global:FullDriverList) {
-            $q = $txtDriverFilter.Text
-            $dgDrivers.ItemsSource = @($global:FullDriverList | Where-Object { $_.FriendlyName -match $q -or $_.Class -match $q })
+            $q =$txtDriverFilter.Text
+            $dgDrivers.ItemsSource = @($global:FullDriverList | Where-Object { $_.FriendlyName -match$q -or $_.Class -match$q })
         }
     })
 
