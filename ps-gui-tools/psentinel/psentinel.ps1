@@ -72,6 +72,7 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
             <TabControl Name="MainTabs" Background="Transparent" BorderThickness="0">
                 <TabControl.Template><ControlTemplate TargetType="TabControl"><ContentPresenter ContentSource="SelectedContent"/></ControlTemplate></TabControl.Template>
 
+                <!-- TAB 0: DASHBOARD -->
                 <TabItem>
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <StackPanel Margin="25">
@@ -178,6 +179,7 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                     </ScrollViewer>
                 </TabItem>
 
+                <!-- TAB 1: EVENTS -->
                 <TabItem>
                     <Grid Margin="30">
                         <Grid.RowDefinitions>
@@ -239,6 +241,7 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                     </Grid>
                 </TabItem>
 
+                <!-- TAB 2: PROCESSES -->
                 <TabItem>
                     <Grid Margin="30">
                         <Grid.RowDefinitions>
@@ -304,6 +307,7 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                     </Grid>
                 </TabItem>
 
+                <!-- TAB 3: FILE EXPLORER -->
                 <TabItem>
                     <Grid Margin="30">
                         <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
@@ -324,6 +328,7 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                     </Grid>
                 </TabItem>
 
+                <!-- TAB 4: NETWORK AUDIT -->
                 <TabItem>
                     <Grid Margin="30">
                         <Grid.RowDefinitions>
@@ -366,93 +371,445 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                     </Grid>
                 </TabItem>
 
+                <!-- TAB 5: SECURITY & INTERVENTION CENTER -->
                 <TabItem>
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <StackPanel Margin="30">
-                            <TextBlock Text="Security &amp; Intervention" FontSize="24" FontWeight="Bold" Margin="0,0,0,25"/>
-                            <TextBlock Text="CRITICAL OVERRIDES" Foreground="#B71C1C" FontWeight="Bold" FontSize="12" Margin="0,0,0,10"/>
-                            <Border Background="#1A1111" Padding="25" CornerRadius="10" BorderBrush="#331111" BorderThickness="1">
-                                <StackPanel>
-                                    <TextBlock Text="CUSTOM OVERLAY MESSAGE" FontSize="10" Foreground="#888" Margin="0,0,0,5"/>
-                                    <TextBox Name="txtCustomMsg" Text="ALERT" 
-                                            Padding="10" Background="#111" Foreground="White" BorderBrush="#444" Margin="0,0,0,10"/>
+                        <StackPanel Margin="25">
+                            <TextBlock Text="Security &amp; Threat Intervention Center" FontSize="26" FontWeight="ExtraBold" Foreground="White" Margin="0,0,0,5"/>
+                            <TextBlock Text="Centralized security auditing, system containment, host displacement, and policy hardening controls." Foreground="#666" Margin="0,0,0,20"/>
+
+                            <Grid Margin="0,0,0,20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- LEFT: Critical Overrides & Active Displacement -->
+                                <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                                    <TextBlock Text="🚨 ACTIVE CONTAINMENT &amp; HOST DISPLACEMENT" Foreground="#B71C1C" FontWeight="Bold" FontSize="12" Margin="0,0,0,10"/>
                                     
-                                    <Button Name="btnPanicMsg" Content="SEND ADMINISTRATIVE OVERLAY MESSAGE" Height="50" 
-                                            Background="#B71C1C" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
-                                    <UniformGrid Columns="2" Margin="0,15,0,0">
-                                        <Button Name="btnBlockInput" Content="🔒 BLOCK INPUT (60s)" Height="60" Background="#E65100" Foreground="White" Margin="0,0,5,0" BorderThickness="0"/>
-                                        <Button Name="btnBlackout" Content="🌑 SCREEN BLACKOUT" Height="60" Background="#212121" Foreground="White" Margin="5,0,0,0" BorderThickness="0"/>
-                                    </UniformGrid>
+                                    <!-- Overlay Message Box -->
+                                    <Border Background="#1A1111" Padding="20" CornerRadius="8" BorderBrush="#331111" BorderThickness="1" Margin="0,0,0,15">
+                                        <StackPanel>
+                                            <TextBlock Text="ADMINISTRATIVE OVERLAY MESSAGE" FontSize="10" Foreground="#888" Margin="0,0,0,5"/>
+                                            <TextBox Name="txtCustomMsg" Text="SECURITY WARNING: Unauthorized activity detected. Your workstation is locked." 
+                                                    Padding="8" Background="#111" Foreground="White" BorderBrush="#444" Margin="0,0,0,10"/>
+                                            
+                                            <Button Name="btnPanicMsg" Content="📢 BROADCAST OVERLAY MESSAGE TO USER SESSION" Height="40" 
+                                                    Background="#B71C1C" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                                            
+                                            <UniformGrid Columns="2" Margin="0,10,0,0">
+                                                <Button Name="btnBlockInput" Content="🔒 BLOCK INPUT (60s)" Height="45" Background="#E65100" Foreground="White" Margin="0,0,4,0" FontWeight="Bold" BorderThickness="0"/>
+                                                <Button Name="btnBlackout" Content="🌑 SCREEN BLACKOUT (15s)" Height="45" Background="#212121" Foreground="White" Margin="4,0,0,0" FontWeight="Bold" BorderThickness="0"/>
+                                            </UniformGrid>
+                                        </StackPanel>
+                                    </Border>
+
+                                    <TextBlock Text="⚙️ POLICY HARDENING &amp; TOOL CONTROL" Foreground="#007ACC" FontWeight="Bold" FontSize="12" Margin="0,5,0,10"/>
+                                    <Border Background="#121214" Padding="20" CornerRadius="8" BorderBrush="#1A1A25" BorderThickness="1">
+                                        <StackPanel>
+                                            <UniformGrid Columns="2">
+                                                <Button Name="btnDisableTools" Content="🚫 BLOCK TASKMGR/CMD/REG" Height="42" Background="#4E342E" Foreground="White" Margin="0,0,4,0" FontWeight="Bold" BorderThickness="0"/>
+                                                <Button Name="btnEnableTools" Content="✅ ALLOW TASKMGR/CMD/REG" Height="42" Background="#222" Foreground="#007ACC" Margin="4,0,0,0" FontWeight="Bold" BorderThickness="0"/>
+                                            </UniformGrid>
+
+                                            <UniformGrid Columns="3" Margin="0,10,0,0">
+                                                <Button Name="btnLock" Content="🔒 LOCK STATION" Height="45" Background="#1E1E1E" Foreground="White" Margin="0,0,3,0" BorderThickness="0"/>
+                                                <Button Name="btnLogoff" Content="🚪 FORCE LOGOFF" Height="45" Background="#BF360C" Foreground="White" Margin="3,0,3,0" FontWeight="Bold" BorderThickness="0"/>
+                                                <Button Name="btnRestart" Content="⚡ FORCE RESTART" Height="45" Background="#B71C1C" Foreground="White" Margin="3,0,0,0" FontWeight="Bold" BorderThickness="0"/>
+                                            </UniformGrid>
+
+                                            <Button Name="btnBuzzer" Content="🔊 TRIGGER AUDIBLE BUZZER BEEP" Height="38" Background="#2E7D32" Foreground="White" Margin="0,10,0,0" FontWeight="Bold" BorderThickness="0"/>
+                                        </StackPanel>
+                                    </Border>
                                 </StackPanel>
-                            </Border>
-                            <TextBlock Text="SYSTEM ACCESS CONTROL" Foreground="#007ACC" FontWeight="Bold" FontSize="12" Margin="0,25,0,10"/>
-                            <Border Background="#121214" Padding="25" CornerRadius="10">
-                                <StackPanel>
-                                    <UniformGrid Columns="2">
-                                        <Button Name="btnDisableTools" Content="BLOCK TASKMGR/CMD/REG" Height="45" Background="#4E342E" Foreground="White" Margin="0,0,5,0" BorderThickness="0"/>
-                                        <Button Name="btnEnableTools" Content="ALLOW TASKMGR/CMD/REG" Height="45" Background="#333333" Foreground="#007ACC" Margin="5,0,0,0" BorderThickness="0"/>
-                                    </UniformGrid>
-                                    <UniformGrid Columns="3" Margin="0,15,0,0">
-                                        <Button Name="btnLock" Content="LOCK STATION" Height="50" Background="#1E1E1E" Foreground="White" Margin="0,0,5,0" BorderThickness="0"/>
-                                        <Button Name="btnLogoff" Content="FORCE LOGOFF" Height="50" Background="#BF360C" Foreground="White" Margin="5,0,5,0" BorderThickness="0"/>
-                                        <Button Name="btnRestart" Content="FORCE RESTART" Height="50" Background="#B71C1C" Foreground="White" Margin="5,0,0,0" BorderThickness="0"/>
-                                    </UniformGrid>
-                                    <Button Name="btnBuzzer" Content="SEND REMOTE BUZZER (BEEP)" Height="40" Background="#2E7D32" Foreground="White" Margin="0,15,0,0" BorderThickness="0"/>
+
+                                <!-- RIGHT: Security Posture Matrix & Account Controls -->
+                                <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                                    <TextBlock Text="🛡️ SECURITY POSTURE MATRIX" Foreground="#007ACC" FontWeight="Bold" FontSize="12" Margin="0,0,0,10"/>
+                                    
+                                    <Border Background="#0D0D12" Padding="20" CornerRadius="8" BorderBrush="#1A1A25" BorderThickness="1" Margin="0,0,0,15">
+                                        <StackPanel>
+                                            <TextBlock Text="WINDOWS FIREWALL ENFORCEMENT" FontSize="10" Foreground="#888" Margin="0,0,0,8"/>
+                                            <UniformGrid Columns="2" Margin="0,0,0,15">
+                                                <Button Name="btnEnableAllFW" Content="🛡️ ENABLE ALL PROFILES" Height="36" Background="#2E7D32" Foreground="White" Margin="0,0,4,0" FontWeight="Bold" BorderThickness="0"/>
+                                                <Button Name="btnDisableAllFW" Content="⚠️ DISABLE ALL PROFILES" Height="36" Background="#B71C1C" Foreground="White" Margin="4,0,0,0" BorderThickness="0"/>
+                                            </UniformGrid>
+
+                                            <TextBlock Text="DEFENDER REAL-TIME PROTECTION" FontSize="10" Foreground="#888" Margin="0,0,0,8"/>
+                                            <UniformGrid Columns="2" Margin="0,0,0,15">
+                                                <Button Name="btnEnableAV" Content="✅ ENABLE DEFENDER" Height="36" Background="#2E7D32" Foreground="White" Margin="0,0,4,0" FontWeight="Bold" BorderThickness="0"/>
+                                                <Button Name="btnDisableAV" Content="🛑 DISABLE DEFENDER" Height="36" Background="#424242" Foreground="White" Margin="4,0,0,0" BorderThickness="0"/>
+                                            </UniformGrid>
+
+                                            <TextBlock Text="CONTAINMENT NETWORK ISOLATION" FontSize="10" Foreground="#888" Margin="0,0,0,8"/>
+                                            <Button Name="btnIsolateHost" Content="🚨 ISOLATE HOST (BLOCK NET TRAFFIC)" Height="42" Background="#D32F2F" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                                        </StackPanel>
+                                    </Border>
+
+                                    <TextBlock Text="👤 ACCOUNT &amp; CREDENTIAL HARDENING" Foreground="#00A2FF" FontWeight="Bold" FontSize="12" Margin="0,0,0,10"/>
+                                    <Border Background="#0D0D12" Padding="20" CornerRadius="8" BorderBrush="#1A1A25" BorderThickness="1">
+                                        <StackPanel>
+                                            <UniformGrid Columns="2" Margin="0,0,0,10">
+                                                <Button Name="btnDisableGuest" Content="🚫 DISABLE GUEST ACCOUNT" Height="38" Background="#1A1A25" Foreground="White" Margin="0,0,4,0" BorderThickness="0"/>
+                                                <Button Name="btnAuditAdmins" Content="📋 AUDIT LOCAL ADMINS" Height="38" Background="#1A1A25" Foreground="White" Margin="4,0,0,0" BorderThickness="0"/>
+                                            </UniformGrid>
+                                            <Button Name="btnPurgeSessions" Content="🧹 DISCONNECT ALL DISCONNECTED SESSIONS" Height="38" Background="#333333" Foreground="White" BorderThickness="0"/>
+                                        </StackPanel>
+                                    </Border>
                                 </StackPanel>
+                            </Grid>
+
+                            <!-- PRESET SECURITY INCIDENT COMMAND LIBRARY -->
+                            <TextBlock Text="💡 INCIDENT RESPONSE COMMAND QUICK-RUNNER" Foreground="#00A2FF" FontWeight="Bold" FontSize="14" Margin="0,10,0,10"/>
+                            <Border Background="#0A0A10" Padding="15" CornerRadius="8" BorderBrush="#1A1A25" BorderThickness="1">
+                                <UniformGrid Columns="2">
+                                    
+                                    <!-- Action 1 -->
+                                    <Border Background="#121218" CornerRadius="5" Padding="10" Margin="4" BorderBrush="#222" BorderThickness="1">
+                                        <DockPanel>
+                                            <StackPanel DockPanel.Dock="Left" Width="300">
+                                                <TextBlock Text="Disable SMBv1 Vulnerable Protocol" FontWeight="Bold" Foreground="White"/>
+                                                <TextBlock Text="Set-SmbServerConfiguration -EnableSMB1Protocol $false" FontFamily="Consolas" FontSize="9" Foreground="#00FF00" Margin="0,4,0,0"/>
+                                            </StackPanel>
+                                            <Button Name="btnRunSecSMB" Content="RUN ACTION" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0" Height="32" Width="90" HorizontalAlignment="Right"/>
+                                        </DockPanel>
+                                    </Border>
+
+                                    <!-- Action 2 -->
+                                    <Border Background="#121218" CornerRadius="5" Padding="10" Margin="4" BorderBrush="#222" BorderThickness="1">
+                                        <DockPanel>
+                                            <StackPanel DockPanel.Dock="Left" Width="300">
+                                                <TextBlock Text="Flush ARP Network Table" FontWeight="Bold" Foreground="White"/>
+                                                <TextBlock Text="netsh interface ip delete arpcache" FontFamily="Consolas" FontSize="9" Foreground="#00FF00" Margin="0,4,0,0"/>
+                                            </StackPanel>
+                                            <Button Name="btnRunSecARP" Content="RUN ACTION" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0" Height="32" Width="90" HorizontalAlignment="Right"/>
+                                        </DockPanel>
+                                    </Border>
+
+                                    <!-- Action 3 -->
+                                    <Border Background="#121218" CornerRadius="5" Padding="10" Margin="4" BorderBrush="#222" BorderThickness="1">
+                                        <DockPanel>
+                                            <StackPanel DockPanel.Dock="Left" Width="300">
+                                                <TextBlock Text="Purge Kerberos Credential Tickets" FontWeight="Bold" Foreground="White"/>
+                                                <TextBlock Text="klist purge" FontFamily="Consolas" FontSize="9" Foreground="#00FF00" Margin="0,4,0,0"/>
+                                            </StackPanel>
+                                            <Button Name="btnRunSecKlist" Content="RUN ACTION" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0" Height="32" Width="90" HorizontalAlignment="Right"/>
+                                        </DockPanel>
+                                    </Border>
+
+                                    <!-- Action 4 -->
+                                    <Border Background="#121218" CornerRadius="5" Padding="10" Margin="4" BorderBrush="#222" BorderThickness="1">
+                                        <DockPanel>
+                                            <StackPanel DockPanel.Dock="Left" Width="300">
+                                                <TextBlock Text="Reset WinSock &amp; TCP/IP Stack" FontWeight="Bold" Foreground="White"/>
+                                                <TextBlock Text="netsh winsock reset" FontFamily="Consolas" FontSize="9" Foreground="#00FF00" Margin="0,4,0,0"/>
+                                            </StackPanel>
+                                            <Button Name="btnRunSecWinsock" Content="RUN ACTION" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0" Height="32" Width="90" HorizontalAlignment="Right"/>
+                                        </DockPanel>
+                                    </Border>
+
+                                </UniformGrid>
                             </Border>
+
                         </StackPanel>
                     </ScrollViewer>
                 </TabItem>
 
+                <!-- TAB 6: TASK SCHEDULER -->
                 <TabItem>
-                    <Grid Margin="30">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="250"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        
-                        <TextBlock Text="Task Management" FontSize="26" Foreground="White" Margin="0,0,0,20"/>
-                        
-                        <Border Grid.Row="1" Background="#0A0A10" Padding="20" CornerRadius="8" Margin="0,0,0,20" BorderBrush="#1A1A25" BorderThickness="1">
+                    <Grid Margin="20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="480"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- LEFT COLUMN: Task Registration & DataGrid -->
+                        <Grid Grid.Column="0" Margin="0,0,15,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="Task Scheduler Operations" FontSize="24" FontWeight="Bold" Foreground="White" Grid.Row="0" Margin="0,0,0,15"/>
+
+                            <!-- Creation Form Panel -->
+                            <Border Grid.Row="1" Background="#0A0A10" Padding="15" CornerRadius="8" Margin="0,0,0,15" BorderBrush="#1A1A25" BorderThickness="1">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0" Margin="0,0,8,0">
+                                        <TextBlock Text="TASK NAME" FontSize="10" Foreground="#00A2FF" Margin="0,0,0,4"/>
+                                        <TextBox Name="txtSchedName" Text="NightlyShutdown" Padding="6" Background="#15151A" Foreground="White" BorderThickness="1" BorderBrush="#333"/>
+                                        <TextBlock Text="EXECUTABLE / COMMAND" FontSize="10" Foreground="#00A2FF" Margin="0,8,0,4"/>
+                                        <TextBox Name="txtSchedPath" Text="shutdown.exe" Padding="6" Background="#15151A" Foreground="White" BorderThickness="1" BorderBrush="#333"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" Margin="8,0,0,0">
+                                        <TextBlock Text="ARGUMENTS" FontSize="10" Foreground="#00A2FF" Margin="0,0,0,4"/>
+                                        <TextBox Name="txtSchedArgs" Text="/s /f /t 60" Padding="6" Background="#15151A" Foreground="White" BorderThickness="1" BorderBrush="#333"/>
+                                        <TextBlock Text="EXECUTION TRIGGER" FontSize="10" Foreground="#00A2FF" Margin="0,8,0,4"/>
+                                        <ComboBox Name="cmbSchedTrigger" Height="28" Background="#15151A" Foreground="White" BorderThickness="1" BorderBrush="#333" SelectedIndex="0">
+                                            <ComboBoxItem Content="Daily (Midnight 00:00)"/>
+                                            <ComboBoxItem Content="At System Boot (AtStartup)"/>
+                                            <ComboBoxItem Content="At User Logon (AtLogOn)"/>
+                                            <ComboBoxItem Content="Hourly Repeat"/>
+                                        </ComboBox>
+                                        <Button Name="btnCreateTask" Content="⚡ REGISTER TASK ON REMOTE HOST" Height="34" Margin="0,12,0,0" Background="#2E7D32" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+                            <!-- DataGrid -->
+                            <DataGrid Name="dgTasks" Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="TASK NAME" Binding="{Binding Name}" Width="170"/>
+                                    <DataGridTextColumn Header="STATE" Binding="{Binding State}" Width="80"/>
+                                    <DataGridTextColumn Header="LAST RESULT" Binding="{Binding LastResult}" Width="90"/>
+                                    <DataGridTextColumn Header="AUTHOR" Binding="{Binding Author}" Width="*"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                            <!-- Controls Toolbar -->
+                            <UniformGrid Grid.Row="3" Columns="6" Margin="0,10,0,0">
+                                <Button Name="btnSchedRefresh" Content="🔄 REFRESH" Height="38" Margin="0,0,2,0" Background="#1A1A25" Foreground="White" BorderThickness="0"/>
+                                <Button Name="btnSchedStart"   Content="▶️ RUN"     Height="38" Margin="2,0,2,0" Background="#0D47A1" Foreground="White" BorderThickness="0"/>
+                                <Button Name="btnSchedStop"    Content="⏹️ STOP"    Height="38" Margin="2,0,2,0" Background="#B71C1C" Foreground="White" BorderThickness="0"/>
+                                <Button Name="btnSchedEnable"  Content="🔓 ENABLE"  Height="38" Margin="2,0,2,0" Background="#2E7D32" Foreground="White" BorderThickness="0"/>
+                                <Button Name="btnSchedDisable" Content="🔒 DISABLE" Height="38" Margin="2,0,2,0" Background="#424242" Foreground="White" BorderThickness="0"/>
+                                <Button Name="btnSchedDelete"  Content="🗑️ DELETE"  Height="38" Margin="2,0,0,0" Background="#D32F2F" Foreground="White" BorderThickness="0"/>
+                            </UniformGrid>
+                        </Grid>
+
+                        <!-- RIGHT COLUMN: Interactive Preset Library & Hint Documentation -->
+                        <Border Grid.Column="1" Background="#0C0C10" Padding="15" CornerRadius="8" BorderBrush="#1A1A25" BorderThickness="1">
                             <Grid>
-                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                                <StackPanel Grid.Column="0" Margin="0,0,10,0">
-                                    <TextBlock Text="TASK NAME" FontSize="10" Foreground="#00A2FF" Margin="0,0,0,5"/>
-                                    <TextBox Name="txtSchedName" Text="watchDog" Padding="8" Background="#15151A" Foreground="White" BorderThickness="1" BorderBrush="#333"/>
-                                    <TextBlock Text="EXECUTABLE / COMMAND" FontSize="10" Foreground="#00A2FF" Margin="0,10,0,5"/>
-                                    <TextBox Name="txtSchedPath" Text="powershell.exe" Padding="8" Background="#15151A" Foreground="White" BorderThickness="1" BorderBrush="#333"/>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Grid.Row="0" Margin="0,0,0,10">
+                                    <TextBlock Text="💡 Preset Library &amp; Snippet Guides" FontSize="18" FontWeight="Bold" Foreground="#00A2FF"/>
+                                    <TextBlock Text="Click 'USE PRESET' to populate the form or 'COPY CMD' to copy raw syntax." FontSize="10" Foreground="#888" Margin="0,2,0,0" TextWrapping="Wrap"/>
                                 </StackPanel>
-                                <StackPanel Grid.Column="1" Margin="10,0,0,0">
-                                    <TextBlock Text="ARGUMENTS" FontSize="10" Foreground="#00A2FF" Margin="0,0,0,5"/>
-                                    <TextBox Name="txtSchedArgs" Text="-NoProfile -WindowStyle Hidden" Padding="8" Background="#15151A" Foreground="White" BorderThickness="1" BorderBrush="#333"/>
-                                    <Button Name="btnCreateTask" Content="REGISTER NEW TASK" Height="42" Margin="0,20,0,0" Background="#2E7D32" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
-                                </StackPanel>
+
+                                <!-- Live Filter Box -->
+                                <Border Grid.Row="1" Background="#121218" CornerRadius="4" Padding="8,4" Margin="0,0,0,10" BorderBrush="#222" BorderThickness="1">
+                                    <DockPanel>
+                                        <TextBlock Text="🔍 SEARCH PRESETS:" VerticalAlignment="Center" Foreground="#00A2FF" FontSize="10" FontWeight="Bold" Margin="0,0,8,0"/>
+                                        <TextBox Name="txtPresetFilter" Background="Transparent" Foreground="White" BorderThickness="0" CaretBrush="White"/>
+                                    </DockPanel>
+                                </Border>
+
+                                <!-- Scrollable Preset Collection -->
+                                <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+                                    <StackPanel Name="pnlPresetList">
+
+                                        <!-- PRESET 1 -->
+                                        <Border Tag="shutdown nightly midnight maintenance restart" Background="#121218" CornerRadius="5" Padding="10" Margin="0,0,0,10" BorderBrush="#222" BorderThickness="1">
+                                            <StackPanel>
+                                                <Grid>
+                                                    <TextBlock Text="🌙 Daily Nightly Shutdown (00:00)" FontWeight="Bold" Foreground="White"/>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                                        <Button Name="btnCopyPreset1" Content="COPY CMD" Padding="6,2" FontSize="9" Background="#222" Foreground="#BBB" Margin="0,0,4,0" BorderThickness="0"/>
+                                                        <Button Name="btnPresetShutdown" Content="USE PRESET" Padding="8,2" FontSize="9" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                                <TextBlock Text="Cmd: shutdown.exe /s /f /t 60" FontFamily="Consolas" FontSize="10" Foreground="#2ECC71" Margin="0,5,0,0"/>
+                                                <TextBlock Text="Triggers daily forced system shutdown at midnight with 60s prompt." FontSize="10" Foreground="#777" Margin="0,2,0,0" TextWrapping="Wrap"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <!-- PRESET 2 -->
+                                        <Border Tag="weekly reboot sunday restart maintenance" Background="#121218" CornerRadius="5" Padding="10" Margin="0,0,0,10" BorderBrush="#222" BorderThickness="1">
+                                            <StackPanel>
+                                                <Grid>
+                                                    <TextBlock Text="🔄 Weekly Reboot (Sun 03:00 AM)" FontWeight="Bold" Foreground="White"/>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                                        <Button Name="btnCopyPreset2" Content="COPY CMD" Padding="6,2" FontSize="9" Background="#222" Foreground="#BBB" Margin="0,0,4,0" BorderThickness="0"/>
+                                                        <Button Name="btnPresetReboot" Content="USE PRESET" Padding="8,2" FontSize="9" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                                <TextBlock Text="Cmd: shutdown.exe /r /f /t 30" FontFamily="Consolas" FontSize="10" Foreground="#2ECC71" Margin="0,5,0,0"/>
+                                                <TextBlock Text="Schedules forced reboot every Sunday morning for maintenance." FontSize="10" Foreground="#777" Margin="0,2,0,0" TextWrapping="Wrap"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <!-- PRESET 3 -->
+                                        <Border Tag="clean temp temporary files purge disk garbage" Background="#121218" CornerRadius="5" Padding="10" Margin="0,0,0,10" BorderBrush="#222" BorderThickness="1">
+                                            <StackPanel>
+                                                <Grid>
+                                                    <TextBlock Text="🧹 Daily Temp Cleanup (Files > 7 Days)" FontWeight="Bold" Foreground="White"/>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                                        <Button Name="btnCopyPreset3" Content="COPY CMD" Padding="6,2" FontSize="9" Background="#222" Foreground="#BBB" Margin="0,0,4,0" BorderThickness="0"/>
+                                                        <Button Name="btnPresetCleanTemp" Content="USE PRESET" Padding="8,2" FontSize="9" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                                <TextBlock Text="Cmd: powershell.exe Get-ChildItem $env:TEMP..." FontFamily="Consolas" FontSize="10" Foreground="#2ECC71" Margin="0,5,0,0"/>
+                                                <TextBlock Text="Deletes files older than 7 days from the system temp directory daily." FontSize="10" Foreground="#777" Margin="0,2,0,0" TextWrapping="Wrap"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <!-- PRESET 4 -->
+                                        <Border Tag="backup registry hklm reg export hive" Background="#121218" CornerRadius="5" Padding="10" Margin="0,0,0,10" BorderBrush="#222" BorderThickness="1">
+                                            <StackPanel>
+                                                <Grid>
+                                                    <TextBlock Text="💾 Daily Registry Export (01:00 AM)" FontWeight="Bold" Foreground="White"/>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                                        <Button Name="btnCopyPreset4" Content="COPY CMD" Padding="6,2" FontSize="9" Background="#222" Foreground="#BBB" Margin="0,0,4,0" BorderThickness="0"/>
+                                                        <Button Name="btnPresetBackupReg" Content="USE PRESET" Padding="8,2" FontSize="9" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                                <TextBlock Text="Cmd: reg.exe export HKLM\SOFTWARE..." FontFamily="Consolas" FontSize="10" Foreground="#2ECC71" Margin="0,5,0,0"/>
+                                                <TextBlock Text="Exports system Software registry hive to local disk every night." FontSize="10" Foreground="#777" Margin="0,2,0,0" TextWrapping="Wrap"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <!-- PRESET 5 -->
+                                        <Border Tag="log boot startup audit append timestamp" Background="#121218" CornerRadius="5" Padding="10" Margin="0,0,0,10" BorderBrush="#222" BorderThickness="1">
+                                            <StackPanel>
+                                                <Grid>
+                                                    <TextBlock Text="📜 Startup Boot Timestamp Logging" FontWeight="Bold" Foreground="White"/>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                                        <Button Name="btnCopyPreset5" Content="COPY CMD" Padding="6,2" FontSize="9" Background="#222" Foreground="#BBB" Margin="0,0,4,0" BorderThickness="0"/>
+                                                        <Button Name="btnPresetLogBoot" Content="USE PRESET" Padding="8,2" FontSize="9" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                                <TextBlock Text="Cmd: powershell.exe Add-Content..." FontFamily="Consolas" FontSize="10" Foreground="#2ECC71" Margin="0,5,0,0"/>
+                                                <TextBlock Text="Appends boot timestamp to C:\Logs\BootHistory.log on startup." FontSize="10" Foreground="#777" Margin="0,2,0,0" TextWrapping="Wrap"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <!-- PRESET 6 -->
+                                        <Border Tag="flush dns cache network reset ip" Background="#121218" CornerRadius="5" Padding="10" Margin="0,0,0,10" BorderBrush="#222" BorderThickness="1">
+                                            <StackPanel>
+                                                <Grid>
+                                                    <TextBlock Text="🌐 Daily DNS Resolver Cache Flush" FontWeight="Bold" Foreground="White"/>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                                        <Button Name="btnCopyPreset6" Content="COPY CMD" Padding="6,2" FontSize="9" Background="#222" Foreground="#BBB" Margin="0,0,4,0" BorderThickness="0"/>
+                                                        <Button Name="btnPresetFlushDNS" Content="USE PRESET" Padding="8,2" FontSize="9" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                                <TextBlock Text="Cmd: ipconfig.exe /flushdns" FontFamily="Consolas" FontSize="10" Foreground="#2ECC71" Margin="0,5,0,0"/>
+                                                <TextBlock Text="Flushes system DNS resolver cache every morning at 06:00 AM." FontSize="10" Foreground="#777" Margin="0,2,0,0" TextWrapping="Wrap"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <!-- PRESET 7 -->
+                                        <Border Tag="defender antivirus quick scan security update" Background="#121218" CornerRadius="5" Padding="10" Margin="0,0,0,10" BorderBrush="#222" BorderThickness="1">
+                                            <StackPanel>
+                                                <Grid>
+                                                    <TextBlock Text="🛡️ Daily Defender Quick Scan (12:00 PM)" FontWeight="Bold" Foreground="White"/>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                                        <Button Name="btnCopyPreset7" Content="COPY CMD" Padding="6,2" FontSize="9" Background="#222" Foreground="#BBB" Margin="0,0,4,0" BorderThickness="0"/>
+                                                        <Button Name="btnPresetDefScan" Content="USE PRESET" Padding="8,2" FontSize="9" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                                <TextBlock Text="Cmd: MpCmdRun.exe -Scan -ScanType 1" FontFamily="Consolas" FontSize="10" Foreground="#2ECC71" Margin="0,5,0,0"/>
+                                                <TextBlock Text="Triggers Microsoft Defender Quick Scan daily at noon." FontSize="10" Foreground="#777" Margin="0,2,0,0" TextWrapping="Wrap"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <!-- PRESET 8 -->
+                                        <Border Tag="firewall enable block security policy profile" Background="#121218" CornerRadius="5" Padding="10" Margin="0,0,0,10" BorderBrush="#222" BorderThickness="1">
+                                            <StackPanel>
+                                                <Grid>
+                                                    <TextBlock Text="🔒 Firewall Audit Enforcement" FontWeight="Bold" Foreground="White"/>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                                        <Button Name="btnCopyPreset8" Content="COPY CMD" Padding="6,2" FontSize="9" Background="#222" Foreground="#BBB" Margin="0,0,4,0" BorderThickness="0"/>
+                                                        <Button Name="btnPresetEnforceFW" Content="USE PRESET" Padding="8,2" FontSize="9" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                                <TextBlock Text="Cmd: netsh.exe advfirewall set allprofiles state on" FontFamily="Consolas" FontSize="10" Foreground="#2ECC71" Margin="0,5,0,0"/>
+                                                <TextBlock Text="Re-enables all firewall profiles every hour to prevent tampering." FontSize="10" Foreground="#777" Margin="0,2,0,0" TextWrapping="Wrap"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <!-- PRESET 9 -->
+                                        <Border Tag="defrag disk optimize drive storage c:" Background="#121218" CornerRadius="5" Padding="10" Margin="0,0,0,10" BorderBrush="#222" BorderThickness="1">
+                                            <StackPanel>
+                                                <Grid>
+                                                    <TextBlock Text="💿 Weekly Disk Optimization (Drive C:)" FontWeight="Bold" Foreground="White"/>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                                        <Button Name="btnCopyPreset9" Content="COPY CMD" Padding="6,2" FontSize="9" Background="#222" Foreground="#BBB" Margin="0,0,4,0" BorderThickness="0"/>
+                                                        <Button Name="btnPresetDefrag" Content="USE PRESET" Padding="8,2" FontSize="9" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                                <TextBlock Text="Cmd: defrag.exe C: /O" FontFamily="Consolas" FontSize="10" Foreground="#2ECC71" Margin="0,5,0,0"/>
+                                                <TextBlock Text="Performs storage TRIM/defragmentation on drive C: weekly." FontSize="10" Foreground="#777" Margin="0,2,0,0" TextWrapping="Wrap"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <!-- PRESET 10 -->
+                                        <Border Tag="kill unresponsive frozen processes taskkill" Background="#121218" CornerRadius="5" Padding="10" Margin="0,0,0,10" BorderBrush="#222" BorderThickness="1">
+                                            <StackPanel>
+                                                <Grid>
+                                                    <TextBlock Text="⚙️ Auto-Terminate Frozen Applications" FontWeight="Bold" Foreground="White"/>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                                        <Button Name="btnCopyPreset10" Content="COPY CMD" Padding="6,2" FontSize="9" Background="#222" Foreground="#BBB" Margin="0,0,4,0" BorderThickness="0"/>
+                                                        <Button Name="btnPresetKillHung" Content="USE PRESET" Padding="8,2" FontSize="9" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                                <TextBlock Text="Cmd: taskkill.exe /F /FI &quot;STATUS eq NOT RESPONDING&quot;" FontFamily="Consolas" FontSize="10" Foreground="#2ECC71" Margin="0,5,0,0"/>
+                                                <TextBlock Text="Scans and kills all non-responsive process threads every 2 hours." FontSize="10" Foreground="#777" Margin="0,2,0,0" TextWrapping="Wrap"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <!-- PRESET 11 -->
+                                        <Border Tag="user logon initial logon trigger script" Background="#121218" CornerRadius="5" Padding="10" Margin="0,0,0,10" BorderBrush="#222" BorderThickness="1">
+                                            <StackPanel>
+                                                <Grid>
+                                                    <TextBlock Text="👤 User Logon Session Initialization" FontWeight="Bold" Foreground="White"/>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                                        <Button Name="btnCopyPreset11" Content="COPY CMD" Padding="6,2" FontSize="9" Background="#222" Foreground="#BBB" Margin="0,0,4,0" BorderThickness="0"/>
+                                                        <Button Name="btnPresetLogonInit" Content="USE PRESET" Padding="8,2" FontSize="9" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                                <TextBlock Text="Cmd: powershell.exe -File &quot;C:\Scripts\UserInit.ps1&quot;" FontFamily="Consolas" FontSize="10" Foreground="#2ECC71" Margin="0,5,0,0"/>
+                                                <TextBlock Text="Executes background user environment setup script upon logon." FontSize="10" Foreground="#777" Margin="0,2,0,0" TextWrapping="Wrap"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <!-- PRESET 12 -->
+                                        <Border Tag="system health status audit log report" Background="#121218" CornerRadius="5" Padding="10" Margin="0,0,0,15" BorderBrush="#222" BorderThickness="1">
+                                            <StackPanel>
+                                                <Grid>
+                                                    <TextBlock Text="📊 System Diagnostic Telemetry Dump" FontWeight="Bold" Foreground="White"/>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                                        <Button Name="btnCopyPreset12" Content="COPY CMD" Padding="6,2" FontSize="9" Background="#222" Foreground="#BBB" Margin="0,0,4,0" BorderThickness="0"/>
+                                                        <Button Name="btnPresetSysReport" Content="USE PRESET" Padding="8,2" FontSize="9" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                                <TextBlock Text="Cmd: powershell.exe Get-ComputerInfo..." FontFamily="Consolas" FontSize="10" Foreground="#2ECC71" Margin="0,5,0,0"/>
+                                                <TextBlock Text="Generates system diagnostic inventory report every Monday morning." FontSize="10" Foreground="#777" Margin="0,2,0,0" TextWrapping="Wrap"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <!-- REFERENCE CHEAT SHEET -->
+                                        <TextBlock Text="📖 PowerShell Task Syntax Guide" FontSize="13" FontWeight="Bold" Foreground="White" Margin="0,5,0,5"/>
+                                        <Border Background="#050508" Padding="10" CornerRadius="5" BorderBrush="#111" BorderThickness="1">
+                                            <StackPanel>
+                                                <TextBlock Text="# Register Command Structure:" Foreground="#888" FontSize="9" FontFamily="Consolas"/>
+                                                <TextBox Text="Register-ScheduledTask -TaskName 'NightlyShutdown' `&#10;  -Trigger (New-ScheduledTaskTrigger -Daily -At 00:00) `&#10;  -Action (New-ScheduledTaskAction -Execute 'shutdown.exe' -Argument '/s /f /t 60') `&#10;  -User 'NT AUTHORITY\SYSTEM' `&#10;  -RunLevel Highest -Force" FontFamily="Consolas" FontSize="9.5" Foreground="#00FF00" Background="Transparent" BorderThickness="0" IsReadOnly="True" TextWrapping="Wrap"/>
+                                                <Separator Background="#222" Margin="0,8"/>
+                                                <TextBlock Text="# Essential PowerShell Operators:" Foreground="#888" FontSize="9" FontFamily="Consolas"/>
+                                                <TextBlock Text="• Start: Start-ScheduledTask -TaskName 'Name'&#10;• Stop:  Stop-ScheduledTask -TaskName 'Name'&#10;• Delete: Unregister-ScheduledTask -TaskName 'Name' -Confirm:$false&#10;• Query: Get-ScheduledTaskInfo -TaskName 'Name'" Foreground="#BBB" FontSize="9.5" FontFamily="Consolas" Margin="0,4,0,0"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                    </StackPanel>
+                                </ScrollViewer>
                             </Grid>
                         </Border>
-
-                        <DataGrid Name="dgTasks" Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="TASK NAME" Binding="{Binding Name}" Width="250"/>
-                                <DataGridTextColumn Header="STATE" Binding="{Binding State}" Width="100"/>
-                                <DataGridTextColumn Header="LAST RESULT" Binding="{Binding LastResult}" Width="120"/>
-                                <DataGridTextColumn Header="NEXT RUN" Binding="{Binding NextRun}" Width="180"/>
-                                <DataGridTextColumn Header="AUTHOR" Binding="{Binding Author}" Width="*"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-
-                        <UniformGrid Grid.Row="3" Columns="6" Margin="0,15,0,0">
-                            <Button Name="btnSchedRefresh" Content="🔄 REFRESH" Height="45" Margin="0,0,3,0" Background="#1A1A25" Foreground="White" BorderThickness="0"/>
-                            <Button Name="btnSchedStart"   Content="▶️ RUN"     Height="45" Margin="3,0,3,0" Background="#0D47A1" Foreground="White" BorderThickness="0"/>
-                            <Button Name="btnSchedStop"    Content="⏹️ STOP"    Height="45" Margin="3,0,3,0" Background="#B71C1C" Foreground="White" BorderThickness="0"/>
-                            <Button Name="btnSchedEnable"  Content="🔓 ENABLE"  Height="45" Margin="3,0,3,0" Background="#2E7D32" Foreground="White" BorderThickness="0"/>
-                            <Button Name="btnSchedDisable" Content="🔒 DISABLE" Height="45" Margin="3,0,3,0" Background="#424242" Foreground="White" BorderThickness="0"/>
-                            <Button Name="btnSchedDelete"  Content="🗑️ DELETE"  Height="45" Margin="3,0,0,0" Background="#D32F2F" Foreground="White" BorderThickness="0"/>
-                        </UniformGrid>
                     </Grid>
                 </TabItem>
 
+                <!-- TAB 7: SERVICES -->
                 <TabItem>
                     <Grid Margin="30">
                         <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
@@ -472,6 +829,7 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                     </Grid>
                 </TabItem>
 
+                <!-- TAB 8: CONSOLE -->
                 <TabItem>
                     <Grid Margin="30">
                         <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="200"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
@@ -482,6 +840,7 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                     </Grid>
                 </TabItem>
 
+                <!-- TAB 9: CONFIG -->
                 <TabItem>
                     <StackPanel Margin="100,50">
                         <TextBlock Text="Remote Authentication Config" FontSize="24" FontWeight="Bold" Margin="0,0,0,30"/>
@@ -491,6 +850,7 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                     </StackPanel>
                 </TabItem>
                 
+                <!-- TAB 10: REMOTE VIEW -->
                 <TabItem>
                     <Grid Margin="30">
                         <Grid.RowDefinitions>
@@ -517,6 +877,7 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                     </Grid>
                 </TabItem>
 
+                <!-- TAB 11: SOFTWARE AUDIT -->
                 <TabItem Header="📦 Software Audit">
                     <Grid Margin="30">
                         <Grid.RowDefinitions>
@@ -568,6 +929,7 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                     </Grid>
                 </TabItem>
 
+                <!-- TAB 12: DRIVER MANAGER -->
                 <TabItem Header="🔌 Driver Manager">
                     <Grid Margin="30">
                         <Grid.RowDefinitions>
@@ -700,7 +1062,16 @@ $nodes = @(
     "dgSoftware", "btnScanSoftware", "btnListUpdates", "btnGetFeatures", "btnUninstallApp",
     "dgDrivers", "txtDriverFilter", "btnScanDrivers",
     "dgProcesses", "txtProcFilter", "btnRefreshProc", "btnKill", "btnUninstallDriver",
-    "btnDriverProps", "btnRestartDevice"
+    "btnDriverProps", "btnRestartDevice",
+    "cmbSchedTrigger", "txtPresetFilter", "pnlPresetList",
+    "btnPresetShutdown", "btnPresetReboot", "btnPresetCleanTemp", "btnPresetBackupReg", "btnPresetLogBoot",
+    "btnPresetFlushDNS", "btnPresetDefScan", "btnPresetEnforceFW", "btnPresetDefrag", "btnPresetKillHung",
+    "btnPresetLogonInit", "btnPresetSysReport",
+    "btnCopyPreset1", "btnCopyPreset2", "btnCopyPreset3", "btnCopyPreset4", "btnCopyPreset5", "btnCopyPreset6",
+    "btnCopyPreset7", "btnCopyPreset8", "btnCopyPreset9", "btnCopyPreset10", "btnCopyPreset11", "btnCopyPreset12",
+    "btnEnableAllFW", "btnDisableAllFW", "btnEnableAV", "btnDisableAV", "btnIsolateHost",
+    "btnDisableGuest", "btnAuditAdmins", "btnPurgeSessions",
+    "btnRunSecSMB", "btnRunSecARP", "btnRunSecKlist", "btnRunSecWinsock"
 )
 
 foreach ($node in $nodes) {
@@ -818,7 +1189,7 @@ $btnGlobalSync.Add_Click({
             $cntCritical.Foreground = if ([int]$data.CritCount -gt 0) { "#F44336" } else { "White" }
             $txtStatus.Text = "ONLINE"; $elStatus.Fill = "#2ECC71"; $statusDot.Fill = "#2ECC71"
             $lblGlobalHost.Text = "REMOTE HOST: $($data.HostName.ToUpper())"; $lblGlobalHost.Foreground = "White"
-            $lblSubStatus.Text = "Online | User: $($data.User) | Time: $(Get-Date -Format "HH:mm:ss")"
+            $lblSubStatus.Text = "Online | User: $($data.User) | Time:$(Get-Date -Format "HH:mm:ss")"
             $mainStatus.Text = "✅ Synchronization Successful."
             $mainStatus.Foreground = [System.Windows.Media.Brushes]::LightGreen
         }
@@ -828,6 +1199,77 @@ $btnGlobalSync.Add_Click({
             $mainStatus.Text = "❌ Sync Failed: $($data.Msg)"
             $mainStatus.Foreground = [System.Windows.Media.Brushes]::Red
         }
+    })
+
+$btnEnableAllFW.Add_Click({
+        Invoke-RExec { Set-NetFirewallProfile -Profile Domain, Public, Private -Enabled True }
+        $mainStatus.Text = "✅ All Windows Firewall profiles enabled."
+    })
+
+$btnDisableAllFW.Add_Click({ $confirm = [System.Windows.MessageBox]::Show("Are you sure you want to disable ALL remote firewall profiles?", "Warning", "YesNo", "Warning")
+        if ($confirm -eq "Yes") {
+            Invoke-RExec { Set-NetFirewallProfile -Profile Domain, Public, Private -Enabled False }
+            $mainStatus.Text = "⚠️ All remote firewall profiles DISABLED."
+        }
+    })
+
+$btnEnableAV.Add_Click({
+        Invoke-RExec { Set-MpPreference -DisableRealtimeMonitoring $false }$mainStatus.Text = "✅ Windows Defender Real-Time Protection enabled."
+    })
+
+$btnDisableAV.Add_Click({
+        Invoke-RExec { Set-MpPreference -DisableRealtimeMonitoring $true }$mainStatus.Text = "⚠️ Windows Defender Real-Time Protection disabled."
+    })
+
+$btnIsolateHost.Add_Click({ $confirm = [System.Windows.MessageBox]::Show("ISOLATE HOST: This will block all inbound/outbound network traffic except existing WinRM session. Proceed?", "Host Isolation", "YesNo", "Error")
+        if ($confirm -eq "Yes") {
+            Invoke-RExec {
+                New-NetFirewallRule -DisplayName "Sentinel_Isolation_Outbound" -Direction Outbound -Action Block -Priority 1 -Force | Out-Null
+                New-NetFirewallRule -DisplayName "Sentinel_Isolation_Inbound" -Direction Inbound -Action Block -Priority 1 -Force | Out-Null
+            }
+            $mainStatus.Text = "🚨 Host Network Isolation Rule Deployed."
+        }
+    })
+
+$btnDisableGuest.Add_Click({
+        Invoke-RExec { Disable-LocalUser -Name "Guest" -ErrorAction SilentlyContinue }
+        $mainStatus.Text = "✅ Local Guest account disabled."
+    })
+
+$btnAuditAdmins.Add_Click({ $admins = Invoke-RExec { Get-LocalGroupMember -Group "Administrators" | Select-Object Name, PrincipalSource }
+        $msg = "Local Administrators Group Members:`n`n"
+        foreach ($a in $admins) { $msg += "• $($a.Name) ($($a.PrincipalSource))`n" }
+        [System.Windows.MessageBox]::Show($msg, "Local Admin Audit", "OK", "Information")
+    })
+
+$btnPurgeSessions.Add_Click({
+        Invoke-RExec {
+            quser | Where-Object { $_ -match "Disc" } | ForEach-Object {
+                $id = ($_ -split '\s+')[2]
+                logoff $id
+            }
+        }
+        $mainStatus.Text = "🧹 Purged all disconnected user sessions."
+    })
+
+$btnRunSecSMB.Add_Click({
+        Invoke-RExec { Set-SmbServerConfiguration -EnableSMB1Protocol $false -Force }
+        $mainStatus.Text = "✅ SMBv1 Protocol Disabled."
+    })
+
+$btnRunSecARP.Add_Click({
+        Invoke-RExec { netsh interface ip delete arpcache }
+        $mainStatus.Text = "✅ ARP Resolver Cache Deleted."
+    })
+
+$btnRunSecKlist.Add_Click({
+        Invoke-RExec { klist purge }
+        $mainStatus.Text = "✅ Kerberos Credential Cache Purged."
+    })
+
+$btnRunSecWinsock.Add_Click({
+        Invoke-RExec { netsh winsock reset }
+        $mainStatus.Text = "✅ WinSock Catalog Reset."
     })
 
 $btnRefreshProc.Add_Click({
@@ -908,6 +1350,7 @@ $btnSchedRefresh.Add_Click({
                     Path       = $_.TaskPath
                     State      = $_.State.ToString()
                     LastResult = if ($info) { $info.LastTaskResult } else { "0" }
+                    Author     = $_.Author
                 }
             }
         }
@@ -919,12 +1362,21 @@ $btnCreateTask.Add_Click({
         $n = $txtSchedName.Text
         $e = $txtSchedPath.Text
         $a = $txtSchedArgs.Text
+        $trigType = $cmbSchedTrigger.SelectedIndex
+
         Invoke-RExec {
-            param($name, $exe, $tArgs) 
+            param($name, $exe, $tArgs, $tType) 
             $action = New-ScheduledTaskAction -Execute $exe -Argument $tArgs
-            $trigger = New-ScheduledTaskTrigger -AtLogOn
-            Register-ScheduledTask -Action $action -Trigger $trigger -TaskName $name -User "SYSTEM" -Force
-        } $n, $e, $a
+            
+            switch ($tType) {
+                1 { $trigger = New-ScheduledTaskTrigger -AtStartup }
+                2 { $trigger = New-ScheduledTaskTrigger -AtLogOn }
+                3 { $trigger = New-ScheduledTaskTrigger -Once -At (Get-Date) -RepetitionInterval (New-TimeSpan -Hours 1) }
+                default { $trigger = New-ScheduledTaskTrigger -Daily -At 00:00 }
+            }
+
+            Register-ScheduledTask -Action $action -Trigger $trigger -TaskName $name -User "NT AUTHORITY\SYSTEM" -RunLevel Highest -Force
+        } $n, $e, $a, $trigType
         $btnSchedRefresh.RaiseEvent((New-Object System.Windows.RoutedEventArgs([System.Windows.Controls.Button]::ClickEvent)))
     })
 
@@ -977,6 +1429,134 @@ $btnSchedDelete.Add_Click({
             }
         }
     })
+
+$txtPresetFilter.Add_TextChanged({
+        $filter = $txtPresetFilter.Text.ToLower()
+        foreach ($child in $pnlPresetList.Children) {
+            if ($child.Tag) {
+                if ([string]::IsNullOrWhiteSpace($filter) -or $child.Tag.ToString().ToLower().Contains($filter)) {
+                    $child.Visibility = [System.Windows.Visibility]::Visible
+                }
+                else {
+                    $child.Visibility = [System.Windows.Visibility]::Collapsed
+                }
+            }
+        }
+    })
+
+$btnPresetShutdown.Add_Click({
+        $txtSchedName.Text = "NightlyShutdown"
+        $txtSchedPath.Text = "shutdown.exe"
+        $txtSchedArgs.Text = "/s /f /t 60"
+        $cmbSchedTrigger.SelectedIndex = 0
+        $mainStatus.Text = "Loaded Preset: Nightly Shutdown"
+    })
+
+$btnPresetReboot.Add_Click({
+        $txtSchedName.Text = "WeeklyReboot"
+        $txtSchedPath.Text = "shutdown.exe"
+        $txtSchedArgs.Text = "/r /f /t 30"
+        $cmbSchedTrigger.SelectedIndex = 0
+        $mainStatus.Text = "Loaded Preset: Weekly Reboot"
+    })
+
+$btnPresetCleanTemp.Add_Click({
+        $txtSchedName.Text = "CleanTempFiles"
+        $txtSchedPath.Text = "powershell.exe"
+        $txtSchedArgs.Text = '-NoProfile -WindowStyle Hidden -Command "Get-ChildItem -Path $env:TEMP -Recurse -File | Where-Object { $_.LastWriteTime -lt (Get-Date).AddDays(-7) } | Remove-Item -Force -ErrorAction SilentlyContinue"'
+        $cmbSchedTrigger.SelectedIndex = 0
+        $mainStatus.Text = "Loaded Preset: Clean Temp Files"
+    })
+
+$btnPresetBackupReg.Add_Click({
+        $txtSchedName.Text = "BackupRegistry"
+        $txtSchedPath.Text = "reg.exe"
+        $txtSchedArgs.Text = 'export HKLM\SOFTWARE C:\Backups\SoftwareRegBackup.reg /y'
+        $cmbSchedTrigger.SelectedIndex = 0
+        $mainStatus.Text = "Loaded Preset: Backup Registry"
+    })
+
+$btnPresetLogBoot.Add_Click({
+        $txtSchedName.Text = "LogStartupTime"
+        $txtSchedPath.Text = "powershell.exe"
+        $txtSchedArgs.Text = '-NoProfile -Command "Add-Content -Path C:\Logs\BootHistory.log -Value (Get-Date).ToString()"'
+        $cmbSchedTrigger.SelectedIndex = 1
+        $mainStatus.Text = "Loaded Preset: Log Startup Time"
+    })
+
+$btnPresetFlushDNS.Add_Click({
+        $txtSchedName.Text = "DailyFlushDNS"
+        $txtSchedPath.Text = "ipconfig.exe"
+        $txtSchedArgs.Text = "/flushdns"
+        $cmbSchedTrigger.SelectedIndex = 0
+        $mainStatus.Text = "Loaded Preset: Flush DNS"
+    })
+
+$btnPresetDefScan.Add_Click({
+        $txtSchedName.Text = "DefenderQuickScan"
+        $txtSchedPath.Text = "C:\Program Files\Windows Defender\MpCmdRun.exe"
+        $txtSchedArgs.Text = "-Scan -ScanType 1"
+        $cmbSchedTrigger.SelectedIndex = 0
+        $mainStatus.Text = "Loaded Preset: Defender Quick Scan"
+    })
+
+$btnPresetEnforceFW.Add_Click({
+        $txtSchedName.Text = "EnforceFirewall"
+        $txtSchedPath.Text = "netsh.exe"
+        $txtSchedArgs.Text = "advfirewall set allprofiles state on"
+        $cmbSchedTrigger.SelectedIndex = 3
+        $mainStatus.Text = "Loaded Preset: Firewall Enforcement"
+    })
+
+$btnPresetDefrag.Add_Click({
+        $txtSchedName.Text = "OptimizeDriveC"
+        $txtSchedPath.Text = "defrag.exe"
+        $txtSchedArgs.Text = "C: /O"
+        $cmbSchedTrigger.SelectedIndex = 0
+        $mainStatus.Text = "Loaded Preset: Optimize Drive C:"
+    })
+
+$btnPresetKillHung.Add_Click({
+        $txtSchedName.Text = "AutoKillHungProcs"
+        $txtSchedPath.Text = "taskkill.exe"
+        $txtSchedArgs.Text = '/F /FI "STATUS eq NOT RESPONDING"'
+        $cmbSchedTrigger.SelectedIndex = 3
+        $mainStatus.Text = "Loaded Preset: Auto-Kill Frozen Procs"
+    })
+
+$btnPresetLogonInit.Add_Click({
+        $txtSchedName.Text = "UserSessionInit"
+        $txtSchedPath.Text = "powershell.exe"
+        $txtSchedArgs.Text = '-NoProfile -WindowStyle Hidden -File "C:\Scripts\UserInit.ps1"'
+        $cmbSchedTrigger.SelectedIndex = 2
+        $mainStatus.Text = "Loaded Preset: User Logon Init"
+    })
+
+$btnPresetSysReport.Add_Click({
+        $txtSchedName.Text = "SysHealthTelemetry"
+        $txtSchedPath.Text = "powershell.exe"
+        $txtSchedArgs.Text = '-NoProfile -Command "Get-ComputerInfo | Export-Clixml -Path C:\Logs\HealthReport.xml"'
+        $cmbSchedTrigger.SelectedIndex = 0
+        $mainStatus.Text = "Loaded Preset: System Health Report"
+    })
+
+function Set-ClipText ($text) {
+    [System.Windows.Forms.Clipboard]::SetText($text)
+    $mainStatus.Text = "📋 Command copied to clipboard!"
+}
+
+$btnCopyPreset1.Add_Click({ Set-ClipText "Register-ScheduledTask -TaskName 'NightlyShutdown' -Trigger (New-ScheduledTaskTrigger -Daily -At 00:00) -Action (New-ScheduledTaskAction -Execute 'shutdown.exe' -Argument '/s /f /t 60') -User 'NT AUTHORITY\SYSTEM' -RunLevel Highest -Force" })
+$btnCopyPreset2.Add_Click({ Set-ClipText "Register-ScheduledTask -TaskName 'WeeklyReboot' -Trigger (New-ScheduledTaskTrigger -Weekly -DaysOfWeek Sunday -At 03:00) -Action (New-ScheduledTaskAction -Execute 'shutdown.exe' -Argument '/r /f /t 30') -User 'NT AUTHORITY\SYSTEM' -RunLevel Highest -Force" })
+$btnCopyPreset3.Add_Click({ Set-ClipText 'Register-ScheduledTask -TaskName "CleanTempFiles" -Trigger (New-ScheduledTaskTrigger -Daily -At 02:00) -Action (New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-NoProfile -WindowStyle Hidden -Command `\"Get-ChildItem -Path `$env:TEMP -Recurse -File | Where-Object { `$_.LastWriteTime -lt (Get-Date).AddDays(-7) } | Remove-Item -Force -ErrorAction SilentlyContinue`\"") -User "NT AUTHORITY\SYSTEM" -RunLevel Highest -Force' })
+$btnCopyPreset4.Add_Click({ Set-ClipText "Register-ScheduledTask -TaskName 'BackupRegistry' -Trigger (New-ScheduledTaskTrigger -Daily -At 01:00) -Action (New-ScheduledTaskAction -Execute 'reg.exe' -Argument 'export HKLM\SOFTWARE C:\Backups\SoftwareRegBackup.reg /y') -User 'NT AUTHORITY\SYSTEM' -RunLevel Highest -Force" })
+$btnCopyPreset5.Add_Click({ Set-ClipText 'Register-ScheduledTask -TaskName "LogStartupTime" -Trigger (New-ScheduledTaskTrigger -AtStartup) -Action (New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-NoProfile -Command `\"Add-Content -Path C:\Logs\BootHistory.log -Value (Get-Date).ToString()`\"") -User "NT AUTHORITY\SYSTEM" -RunLevel Highest -Force' })
+$btnCopyPreset6.Add_Click({ Set-ClipText "Register-ScheduledTask -TaskName 'DailyFlushDNS' -Trigger (New-ScheduledTaskTrigger -Daily -At 06:00) -Action (New-ScheduledTaskAction -Execute 'ipconfig.exe' -Argument '/flushdns') -User 'NT AUTHORITY\SYSTEM' -RunLevel Highest -Force" })
+$btnCopyPreset7.Add_Click({ Set-ClipText "Register-ScheduledTask -TaskName 'DefenderQuickScan' -Trigger (New-ScheduledTaskTrigger -Daily -At 12:00) -Action (New-ScheduledTaskAction -Execute 'C:\Program Files\Windows Defender\MpCmdRun.exe' -Argument '-Scan -ScanType 1') -User 'NT AUTHORITY\SYSTEM' -RunLevel Highest -Force" })
+$btnCopyPreset8.Add_Click({ Set-ClipText "Register-ScheduledTask -TaskName 'EnforceFirewall' -Trigger (New-ScheduledTaskTrigger -Once -At (Get-Date) -RepetitionInterval (New-TimeSpan -Hours 1)) -Action (New-ScheduledTaskAction -Execute 'netsh.exe' -Argument 'advfirewall set allprofiles state on') -User 'NT AUTHORITY\SYSTEM' -RunLevel Highest -Force" })
+$btnCopyPreset9.Add_Click({ Set-ClipText "Register-ScheduledTask -TaskName 'OptimizeDriveC' -Trigger (New-ScheduledTaskTrigger -Weekly -DaysOfWeek Saturday -At 02:00) -Action (New-ScheduledTaskAction -Execute 'defrag.exe' -Argument 'C: /O') -User 'NT AUTHORITY\SYSTEM' -RunLevel Highest -Force" })
+$btnCopyPreset10.Add_Click({ Set-ClipText 'Register-ScheduledTask -TaskName "AutoKillHungProcs" -Trigger (New-ScheduledTaskTrigger -Once -At (Get-Date) -RepetitionInterval (New-TimeSpan -Hours 2)) -Action (New-ScheduledTaskAction -Execute "taskkill.exe" -Argument "/F /FI `"STATUS eq NOT RESPONDING`"") -User "NT AUTHORITY\SYSTEM" -RunLevel Highest -Force' })
+$btnCopyPreset11.Add_Click({ Set-ClipText 'Register-ScheduledTask -TaskName "UserSessionInit" -Trigger (New-ScheduledTaskTrigger -AtLogOn) -Action (New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-NoProfile -WindowStyle Hidden -File `"C:\Scripts\UserInit.ps1`"") -RunLevel Highest -Force' })
+$btnCopyPreset12.Add_Click({ Set-ClipText 'Register-ScheduledTask -TaskName "SysHealthTelemetry" -Trigger (New-ScheduledTaskTrigger -Weekly -DaysOfWeek Monday -At 07:00) -Action (New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-NoProfile -Command `\"Get-ComputerInfo | Export-Clixml -Path C:\Logs\HealthReport.xml`\"") -User "NT AUTHORITY\SYSTEM" -RunLevel Highest -Force' })
 
 $txtEventFilter.Add_TextChanged({
         $view = [System.Windows.Data.CollectionViewSource]::GetDefaultView($dgEvents.ItemsSource)
@@ -1131,7 +1711,6 @@ $btnRestart.Add_Click({ Invoke-RExec { Restart-Computer -Force } })
 
 $btnBuzzer.Add_Click({
         Invoke-RExec {
-            #$sessionID = (quser | Select-String ">" | ForEach-Object { ($_ -split '\s+')[2] })
             $action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-WindowStyle Hidden -Command [console]::Beep(1000,1000)"
             $taskName = "RemoteBuzzer_$(Get-Random)"
             Register-ScheduledTask -TaskName $taskName -Action $action -Force -Settings (New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries) | Out-Null
@@ -1419,11 +1998,6 @@ $btnUninstallApp.Add_Click({
         }
     })
 
-<# $navDrivers.Add_Click({ 
-        $MainTabs.SelectedIndex = 12 
-        $mainStatus.Text = "Hardware Inventory Tab Selected."
-    }) #>
-
 $btnScanDrivers.Add_Click({
         $target = $txtHost.Text
         if ([string]::IsNullOrWhiteSpace($target)) { 
@@ -1517,8 +2091,7 @@ $btnUninstallDriver.Add_Click({
         if ($ans -eq "Yes") {
             $id = $selected.InstanceId
             $res = Invoke-RExec {
-                param($targetId)
-                $process = Start-Process pnputil -ArgumentList "/remove-device ""$targetId""" -Wait -PassThru -WindowStyle Hidden
+                param($targetId)$process = Start-Process pnputil -ArgumentList "/remove-device ""$targetId""" -Wait -PassThru -WindowStyle Hidden
                 if ($process.ExitCode -eq 0) { return "OK" } else { return "Error Code: $($process.ExitCode)" }
             } $id
             if ($res -eq "OK") {
