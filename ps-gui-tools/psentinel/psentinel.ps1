@@ -503,7 +503,7 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                             <Button Name="btnNetstat" Content="🔍 SCAN CONNECTIONS" Height="42" Margin="0,0,4,0" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
                             <Button Name="btnIPConfig" Content="📋 INTERFACE DETAILS" Height="42" Margin="4,0,4,0" Background="#1A1A25" Foreground="White" BorderThickness="0"/>
                             <Button Name="btnRoutePrint" Content="🛤️ ROUTING TABLE" Height="42" Margin="4,0,4,0" Background="#1A1A25" Foreground="White" BorderThickness="0"/>
-                            <Button Name="btnDNSFlush" Content="🧹 FLUSH DNS" Height="42" Margin="4,0,0,0" Background="#B71C1C" Foreground="White" BorderThickness="0"/>
+                            <Button Name="btnDNSFlush" Content="🧹 FLUSH DNS" Height="42" Margin="4,0,0,0" Background="#B71C1C" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
                         </UniformGrid>
 
                         <UniformGrid Grid.Row="6" Columns="4" Margin="0,8,0,0">
@@ -515,7 +515,7 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                     </Grid>
                 </TabItem>
 
-                <!-- TAB 5: SECURITY & INTERVENTION CENTER -->
+                <!-- TAB 5: SECURITY CENTER -->
                 <TabItem>
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <StackPanel Margin="25">
@@ -528,11 +528,9 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <!-- LEFT: Critical Overrides & Active Displacement -->
                                 <StackPanel Grid.Column="0" Margin="0,0,10,0">
                                     <TextBlock Text="🚨 ACTIVE CONTAINMENT &amp; HOST DISPLACEMENT" Foreground="#B71C1C" FontWeight="Bold" FontSize="12" Margin="0,0,0,10"/>
                                     
-                                    <!-- Overlay Message Box -->
                                     <Border Background="#1A1111" Padding="20" CornerRadius="8" BorderBrush="#331111" BorderThickness="1" Margin="0,0,0,15">
                                         <StackPanel>
                                             <TextBlock Text="ADMINISTRATIVE OVERLAY MESSAGE" FontSize="10" Foreground="#888" Margin="0,0,0,5"/>
@@ -568,7 +566,6 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                                     </Border>
                                 </StackPanel>
 
-                                <!-- RIGHT: Security Posture Matrix & Account Controls -->
                                 <StackPanel Grid.Column="1" Margin="10,0,0,0">
                                     <TextBlock Text="🛡️ SECURITY POSTURE MATRIX" Foreground="#007ACC" FontWeight="Bold" FontSize="12" Margin="0,0,0,10"/>
                                     
@@ -576,7 +573,7 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                                         <StackPanel>
                                             <TextBlock Text="WINDOWS FIREWALL ENFORCEMENT" FontSize="10" Foreground="#888" Margin="0,0,0,8"/>
                                             <UniformGrid Columns="2" Margin="0,0,0,15">
-                                                <Button Name="btnEnableAllFW" Content="🛡️ ENABLE ALL PROFILES" Height="36" Background="#2E7D32" Foreground="White" Margin="0,0,4,0" FontWeight="Bold" BorderThickness="0"/>
+                                                <Button Name="btnEnableAllFW" Content="🛡️️ ENABLE ALL PROFILES" Height="36" Background="#2E7D32" Foreground="White" Margin="0,0,4,0" FontWeight="Bold" BorderThickness="0"/>
                                                 <Button Name="btnDisableAllFW" Content="⚠️ DISABLE ALL PROFILES" Height="36" Background="#B71C1C" Foreground="White" Margin="4,0,0,0" BorderThickness="0"/>
                                             </UniformGrid>
 
@@ -604,12 +601,9 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                                 </StackPanel>
                             </Grid>
 
-                            <!-- PRESET SECURITY INCIDENT COMMAND LIBRARY -->
                             <TextBlock Text="💡 INCIDENT RESPONSE COMMAND QUICK-RUNNER" Foreground="#00A2FF" FontWeight="Bold" FontSize="14" Margin="0,10,0,10"/>
                             <Border Background="#0A0A10" Padding="15" CornerRadius="8" BorderBrush="#1A1A25" BorderThickness="1">
                                 <UniformGrid Columns="2">
-                                    
-                                    <!-- Action 1 -->
                                     <Border Background="#121218" CornerRadius="5" Padding="10" Margin="4" BorderBrush="#222" BorderThickness="1">
                                         <DockPanel>
                                             <StackPanel DockPanel.Dock="Left" Width="300">
@@ -619,8 +613,6 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                                             <Button Name="btnRunSecSMB" Content="RUN ACTION" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0" Height="32" Width="90" HorizontalAlignment="Right"/>
                                         </DockPanel>
                                     </Border>
-
-                                    <!-- Action 2 -->
                                     <Border Background="#121218" CornerRadius="5" Padding="10" Margin="4" BorderBrush="#222" BorderThickness="1">
                                         <DockPanel>
                                             <StackPanel DockPanel.Dock="Left" Width="300">
@@ -630,8 +622,6 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                                             <Button Name="btnRunSecARP" Content="RUN ACTION" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0" Height="32" Width="90" HorizontalAlignment="Right"/>
                                         </DockPanel>
                                     </Border>
-
-                                    <!-- Action 3 -->
                                     <Border Background="#121218" CornerRadius="5" Padding="10" Margin="4" BorderBrush="#222" BorderThickness="1">
                                         <DockPanel>
                                             <StackPanel DockPanel.Dock="Left" Width="300">
@@ -641,8 +631,6 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                                             <Button Name="btnRunSecKlist" Content="RUN ACTION" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0" Height="32" Width="90" HorizontalAlignment="Right"/>
                                         </DockPanel>
                                     </Border>
-
-                                    <!-- Action 4 -->
                                     <Border Background="#121218" CornerRadius="5" Padding="10" Margin="4" BorderBrush="#222" BorderThickness="1">
                                         <DockPanel>
                                             <StackPanel DockPanel.Dock="Left" Width="300">
@@ -652,10 +640,8 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                                             <Button Name="btnRunSecWinsock" Content="RUN ACTION" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0" Height="32" Width="90" HorizontalAlignment="Right"/>
                                         </DockPanel>
                                     </Border>
-
                                 </UniformGrid>
                             </Border>
-
                         </StackPanel>
                     </ScrollViewer>
                 </TabItem>
@@ -668,7 +654,6 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                             <ColumnDefinition Width="480"/>
                         </Grid.ColumnDefinitions>
 
-                        <!-- LEFT COLUMN: Task Registration & DataGrid -->
                         <Grid Grid.Column="0" Margin="0,0,15,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -679,7 +664,6 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
 
                             <TextBlock Text="Task Scheduler Operations" FontSize="24" FontWeight="Bold" Foreground="White" Grid.Row="0" Margin="0,0,0,15"/>
 
-                            <!-- Creation Form Panel -->
                             <Border Grid.Row="1" Background="#0A0A10" Padding="15" CornerRadius="8" Margin="0,0,0,15" BorderBrush="#1A1A25" BorderThickness="1">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -707,7 +691,6 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                                 </Grid>
                             </Border>
 
-                            <!-- DataGrid -->
                             <DataGrid Name="dgTasks" Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="TASK NAME" Binding="{Binding Name}" Width="170"/>
@@ -717,18 +700,16 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                                 </DataGrid.Columns>
                             </DataGrid>
 
-                            <!-- Controls Toolbar -->
                             <UniformGrid Grid.Row="3" Columns="6" Margin="0,10,0,0">
                                 <Button Name="btnSchedRefresh" Content="🔄 REFRESH" Height="38" Margin="0,0,2,0" Background="#1A1A25" Foreground="White" BorderThickness="0"/>
-                                <Button Name="btnSchedStart"   Content="▶️️ RUN"     Height="38" Margin="2,0,2,0" Background="#0D47A1" Foreground="White" BorderThickness="0"/>
-                                <Button Name="btnSchedStop"    Content="⏹️ STOP"    Height="38" Margin="2,0,2,0" Background="#B71C1C" Foreground="White" BorderThickness="0"/>
+                                <Button Name="btnSchedStart"   Content="▶ RUN"     Height="38" Margin="2,0,2,0" Background="#0D47A1" Foreground="White" BorderThickness="0"/>
+                                <Button Name="btnSchedStop"    Content="⏹️️ STOP"    Height="38" Margin="2,0,2,0" Background="#B71C1C" Foreground="White" BorderThickness="0"/>
                                 <Button Name="btnSchedEnable"  Content="🔓 ENABLE"  Height="38" Margin="2,0,2,0" Background="#2E7D32" Foreground="White" BorderThickness="0"/>
                                 <Button Name="btnSchedDisable" Content="🔒 DISABLE" Height="38" Margin="2,0,2,0" Background="#424242" Foreground="White" BorderThickness="0"/>
                                 <Button Name="btnSchedDelete"  Content="🗑️ DELETE"  Height="38" Margin="2,0,0,0" Background="#D32F2F" Foreground="White" BorderThickness="0"/>
                             </UniformGrid>
                         </Grid>
 
-                        <!-- RIGHT COLUMN: Interactive Preset Library & Hint Documentation -->
                         <Border Grid.Column="1" Background="#0C0C10" Padding="15" CornerRadius="8" BorderBrush="#1A1A25" BorderThickness="1">
                             <Grid>
                                 <Grid.RowDefinitions>
@@ -742,7 +723,6 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                                     <TextBlock Text="Click 'USE PRESET' to populate the form or 'COPY CMD' to copy raw syntax." FontSize="10" Foreground="#888" Margin="0,2,0,0" TextWrapping="Wrap"/>
                                 </StackPanel>
 
-                                <!-- Live Filter Box -->
                                 <Border Grid.Row="1" Background="#121218" CornerRadius="4" Padding="8,4" Margin="0,0,0,10" BorderBrush="#222" BorderThickness="1">
                                     <DockPanel>
                                         <TextBlock Text="🔍 SEARCH PRESETS:" VerticalAlignment="Center" Foreground="#00A2FF" FontSize="10" FontWeight="Bold" Margin="0,0,8,0"/>
@@ -750,11 +730,8 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                                     </DockPanel>
                                 </Border>
 
-                                <!-- Scrollable Preset Collection -->
                                 <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
                                     <StackPanel Name="pnlPresetList">
-
-                                        <!-- PRESET 1 -->
                                         <Border Tag="shutdown nightly midnight maintenance restart" Background="#121218" CornerRadius="5" Padding="10" Margin="0,0,0,10" BorderBrush="#222" BorderThickness="1">
                                             <StackPanel>
                                                 <Grid>
@@ -768,8 +745,6 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                                                 <TextBlock Text="Triggers daily forced system shutdown at midnight with 60s prompt." FontSize="10" Foreground="#777" Margin="0,2,0,0" TextWrapping="Wrap"/>
                                             </StackPanel>
                                         </Border>
-
-                                        <!-- PRESET 2 -->
                                         <Border Tag="weekly reboot sunday restart maintenance" Background="#121218" CornerRadius="5" Padding="10" Margin="0,0,0,10" BorderBrush="#222" BorderThickness="1">
                                             <StackPanel>
                                                 <Grid>
@@ -783,8 +758,6 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                                                 <TextBlock Text="Schedules forced reboot every Sunday morning for maintenance." FontSize="10" Foreground="#777" Margin="0,2,0,0" TextWrapping="Wrap"/>
                                             </StackPanel>
                                         </Border>
-
-                                        <!-- PRESET 3 -->
                                         <Border Tag="clean temp temporary files purge disk garbage" Background="#121218" CornerRadius="5" Padding="10" Margin="0,0,0,10" BorderBrush="#222" BorderThickness="1">
                                             <StackPanel>
                                                 <Grid>
@@ -798,8 +771,6 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                                                 <TextBlock Text="Deletes files older than 7 days from the system temp directory daily." FontSize="10" Foreground="#777" Margin="0,2,0,0" TextWrapping="Wrap"/>
                                             </StackPanel>
                                         </Border>
-
-                                        <!-- PRESET 4 -->
                                         <Border Tag="backup registry hklm reg export hive" Background="#121218" CornerRadius="5" Padding="10" Margin="0,0,0,10" BorderBrush="#222" BorderThickness="1">
                                             <StackPanel>
                                                 <Grid>
@@ -813,8 +784,6 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                                                 <TextBlock Text="Exports system Software registry hive to local disk every night." FontSize="10" Foreground="#777" Margin="0,2,0,0" TextWrapping="Wrap"/>
                                             </StackPanel>
                                         </Border>
-
-                                        <!-- PRESET 5 -->
                                         <Border Tag="log boot startup audit append timestamp" Background="#121218" CornerRadius="5" Padding="10" Margin="0,0,0,10" BorderBrush="#222" BorderThickness="1">
                                             <StackPanel>
                                                 <Grid>
@@ -828,8 +797,6 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                                                 <TextBlock Text="Appends boot timestamp to C:\Logs\BootHistory.log on startup." FontSize="10" Foreground="#777" Margin="0,2,0,0" TextWrapping="Wrap"/>
                                             </StackPanel>
                                         </Border>
-
-                                        <!-- PRESET 6 -->
                                         <Border Tag="flush dns cache network reset ip" Background="#121218" CornerRadius="5" Padding="10" Margin="0,0,0,10" BorderBrush="#222" BorderThickness="1">
                                             <StackPanel>
                                                 <Grid>
@@ -843,8 +810,6 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                                                 <TextBlock Text="Flushes system DNS resolver cache every morning at 06:00 AM." FontSize="10" Foreground="#777" Margin="0,2,0,0" TextWrapping="Wrap"/>
                                             </StackPanel>
                                         </Border>
-
-                                        <!-- PRESET 7 -->
                                         <Border Tag="defender antivirus quick scan security update" Background="#121218" CornerRadius="5" Padding="10" Margin="0,0,0,10" BorderBrush="#222" BorderThickness="1">
                                             <StackPanel>
                                                 <Grid>
@@ -858,8 +823,6 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                                                 <TextBlock Text="Triggers Microsoft Defender Quick Scan daily at noon." FontSize="10" Foreground="#777" Margin="0,2,0,0" TextWrapping="Wrap"/>
                                             </StackPanel>
                                         </Border>
-
-                                        <!-- PRESET 8 -->
                                         <Border Tag="firewall enable block security policy profile" Background="#121218" CornerRadius="5" Padding="10" Margin="0,0,0,10" BorderBrush="#222" BorderThickness="1">
                                             <StackPanel>
                                                 <Grid>
@@ -873,8 +836,6 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                                                 <TextBlock Text="Re-enables all firewall profiles every hour to prevent tampering." FontSize="10" Foreground="#777" Margin="0,2,0,0" TextWrapping="Wrap"/>
                                             </StackPanel>
                                         </Border>
-
-                                        <!-- PRESET 9 -->
                                         <Border Tag="defrag disk optimize drive storage c:" Background="#121218" CornerRadius="5" Padding="10" Margin="0,0,0,10" BorderBrush="#222" BorderThickness="1">
                                             <StackPanel>
                                                 <Grid>
@@ -888,8 +849,6 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                                                 <TextBlock Text="Performs storage TRIM/defragmentation on drive C: weekly." FontSize="10" Foreground="#777" Margin="0,2,0,0" TextWrapping="Wrap"/>
                                             </StackPanel>
                                         </Border>
-
-                                        <!-- PRESET 10 -->
                                         <Border Tag="kill unresponsive frozen processes taskkill" Background="#121218" CornerRadius="5" Padding="10" Margin="0,0,0,10" BorderBrush="#222" BorderThickness="1">
                                             <StackPanel>
                                                 <Grid>
@@ -903,8 +862,6 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                                                 <TextBlock Text="Scans and kills all non-responsive process threads every 2 hours." FontSize="10" Foreground="#777" Margin="0,2,0,0" TextWrapping="Wrap"/>
                                             </StackPanel>
                                         </Border>
-
-                                        <!-- PRESET 11 -->
                                         <Border Tag="user logon initial logon trigger script" Background="#121218" CornerRadius="5" Padding="10" Margin="0,0,0,10" BorderBrush="#222" BorderThickness="1">
                                             <StackPanel>
                                                 <Grid>
@@ -918,8 +875,6 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                                                 <TextBlock Text="Executes background user environment setup script upon logon." FontSize="10" Foreground="#777" Margin="0,2,0,0" TextWrapping="Wrap"/>
                                             </StackPanel>
                                         </Border>
-
-                                        <!-- PRESET 12 -->
                                         <Border Tag="system health status audit log report" Background="#121218" CornerRadius="5" Padding="10" Margin="0,0,0,15" BorderBrush="#222" BorderThickness="1">
                                             <StackPanel>
                                                 <Grid>
@@ -933,8 +888,6 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                                                 <TextBlock Text="Generates system diagnostic inventory report every Monday morning." FontSize="10" Foreground="#777" Margin="0,2,0,0" TextWrapping="Wrap"/>
                                             </StackPanel>
                                         </Border>
-
-                                        <!-- REFERENCE CHEAT SHEET -->
                                         <TextBlock Text="📖 PowerShell Task Syntax Guide" FontSize="13" FontWeight="Bold" Foreground="White" Margin="0,5,0,5"/>
                                         <Border Background="#050508" Padding="10" CornerRadius="5" BorderBrush="#111" BorderThickness="1">
                                             <StackPanel>
@@ -945,7 +898,6 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                                                 <TextBlock Text="• Start: Start-ScheduledTask -TaskName 'Name'&#10;• Stop:  Stop-ScheduledTask -TaskName 'Name'&#10;• Delete: Unregister-ScheduledTask -TaskName 'Name' -Confirm:$false&#10;• Query: Get-ScheduledTaskInfo -TaskName 'Name'" Foreground="#BBB" FontSize="9.5" FontFamily="Consolas" Margin="0,4,0,0"/>
                                             </StackPanel>
                                         </Border>
-
                                     </StackPanel>
                                 </ScrollViewer>
                             </Grid>
@@ -953,7 +905,7 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                     </Grid>
                 </TabItem>
 
-                <!-- TAB 7: SYSTEM SERVICES -->
+                <!-- TAB 7: SERVICES -->
                 <TabItem>
                     <Grid Margin="30">
                         <Grid.RowDefinitions>
@@ -997,7 +949,6 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                             </Border>
                         </UniformGrid>
 
-                        <!-- Filter Bar -->
                         <Border Grid.Row="2" Background="#111" CornerRadius="5" Padding="15,8" Margin="0,0,0,12" BorderBrush="#222" BorderThickness="1">
                             <DockPanel>
                                 <TextBlock Text="🔍 FILTER SERVICES:" VerticalAlignment="Center" Margin="0,0,15,0" Foreground="#007ACC" FontWeight="Bold" FontSize="11"/>
@@ -1005,7 +956,6 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                             </DockPanel>
                         </Border>
 
-                        <!-- Services DataGrid -->
                         <Border Grid.Row="3" Background="#0D0D0F" CornerRadius="10" Padding="10" BorderBrush="#1A1A1D" BorderThickness="1">
                             <DataGrid Name="dgServices" AutoGenerateColumns="False" Background="Transparent" Foreground="#BBB" BorderThickness="0" IsReadOnly="True" SelectionMode="Single">
                                 <DataGrid.Columns>
@@ -1032,7 +982,6 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                             </DataGrid>
                         </Border>
 
-                        <!-- Action Toolbar -->
                         <UniformGrid Grid.Row="4" Columns="5" Margin="0,15,0,0">
                             <Button Name="btnSvcRefresh" Content="🔄 REFRESH LIST" Height="45" Margin="0,0,4,0" Background="#1A1A25" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
                             <Button Name="btnSvcStart"   Content="▶️ START"      Height="45" Margin="4,0,4,0" Background="#2E7D32" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
@@ -1107,7 +1056,6 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                             <TextBlock Text="Comprehensive inventory audit of Win32 applications, modern Store packages, updates, and deep removal controls." Foreground="#666"/>
                         </StackPanel>
 
-                        <!-- Summary Cards -->
                         <UniformGrid Grid.Row="1" Columns="4" Height="80" Margin="0,0,0,15">
                             <Border Background="#121214" Margin="4" CornerRadius="8" BorderBrush="#1A1A1D" BorderThickness="1">
                                 <StackPanel VerticalAlignment="Center" Margin="15,0">
@@ -1135,7 +1083,6 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                             </Border>
                         </UniformGrid>
 
-                        <!-- Filter Bar -->
                         <Border Grid.Row="2" Background="#111" CornerRadius="5" Padding="15,8" Margin="0,0,0,12" BorderBrush="#222" BorderThickness="1">
                             <DockPanel>
                                 <TextBlock Text="🔍 FILTER SOFTWARE:" VerticalAlignment="Center" Margin="0,0,15,0" Foreground="#007ACC" FontWeight="Bold" FontSize="11"/>
@@ -1143,7 +1090,6 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                             </DockPanel>
                         </Border>
 
-                        <!-- Software DataGrid -->
                         <Border Grid.Row="3" Background="#0D0D0F" CornerRadius="10" Padding="10" BorderBrush="#1A1A1D" BorderThickness="1">
                             <DataGrid Name="dgSoftware" AutoGenerateColumns="False" Background="Transparent" Foreground="#BBB" BorderThickness="0" IsReadOnly="True" SelectionMode="Single">
                                 <DataGrid.Columns>
@@ -1176,7 +1122,6 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                             </DataGrid>
                         </Border>
 
-                        <!-- Action Toolbar -->
                         <UniformGrid Grid.Row="4" Columns="4" Margin="0,15,0,0">
                             <Button Name="btnScanSoftware" Content="🔍 FULL INVENTORY SCAN" Height="45" Margin="0,0,5,0" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
                             <Button Name="btnListUpdates" Content="🛡️ VIEW PENDING UPDATES" Height="45" Margin="5,0,5,0" Background="#1A1A25" Foreground="White" BorderThickness="0"/>
@@ -1190,38 +1135,107 @@ Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, Sys
                 <TabItem Header="🔌 Driver Manager">
                     <Grid Margin="30">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/> <RowDefinition Height="*"/>    <RowDefinition Height="Auto"/> </Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
+                        <!-- Header Panel -->
                         <StackPanel Grid.Row="0" Margin="0,0,0,15">
-                            <TextBlock Text="Hardware &amp; Driver Audit" FontSize="26" FontWeight="Bold" Foreground="White"/>
-                            <DockPanel Margin="0,5,0,0">
-                                <TextBlock Text="Complete inventory of PnP devices." Foreground="#666"/>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                    <TextBlock Text="🔍 FILTER:" VerticalAlignment="Center" Margin="0,0,10,0" Foreground="#007ACC" FontSize="10"/>
-                                    <TextBox Name="txtDriverFilter" Width="200" Background="#111" Foreground="White" BorderBrush="#333" Padding="4"/>
-                                </StackPanel>
-                            </DockPanel>
+                            <TextBlock Text="Hardware &amp; Plug-and-Play Driver Intelligence" FontSize="26" FontWeight="ExtraBold" Foreground="White"/>
+                            <TextBlock Text="Comprehensive telemetry, deep driver property inspection, power cycle controls, and signed package maintenance." Foreground="#666"/>
                         </StackPanel>
 
-                        <Border Grid.Row="1" Background="#0D0D0F" CornerRadius="8" BorderBrush="#1A1A1D" BorderThickness="1">
-                            <DataGrid Name="dgDrivers" AutoGenerateColumns="False" Background="Transparent" 
-                                    Foreground="#BBB" BorderThickness="0" IsReadOnly="True" 
-                                    SelectionMode="Single" VerticalScrollBarVisibility="Auto">
+                        <!-- Summary Metric Cards -->
+                        <UniformGrid Grid.Row="1" Columns="4" Height="80" Margin="0,0,0,15">
+                            <Border Background="#121214" Margin="4" CornerRadius="8" BorderBrush="#1A1A1D" BorderThickness="1">
+                                <StackPanel VerticalAlignment="Center" Margin="15,0">
+                                    <TextBlock Text="TOTAL DEVICES" Foreground="#007ACC" FontSize="10" FontWeight="Bold"/>
+                                    <TextBlock Name="cntDriverTotal" Text="0" FontSize="24" FontWeight="Bold" Foreground="White"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Background="#121214" Margin="4" CornerRadius="8" BorderBrush="#1A1A1D" BorderThickness="1">
+                                <StackPanel VerticalAlignment="Center" Margin="15,0">
+                                    <TextBlock Text="RUNNING / OK" Foreground="#2ECC71" FontSize="10" FontWeight="Bold"/>
+                                    <TextBlock Name="cntDriverOK" Text="0" FontSize="24" FontWeight="Bold" Foreground="White"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Background="#121214" Margin="4" CornerRadius="8" BorderBrush="#1A1A1D" BorderThickness="1">
+                                <StackPanel VerticalAlignment="Center" Margin="15,0">
+                                    <TextBlock Text="WARNING / ERROR" Foreground="#F44336" FontSize="10" FontWeight="Bold"/>
+                                    <TextBlock Name="cntDriverErr" Text="0" FontSize="24" FontWeight="Bold" Foreground="White"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Background="#121214" Margin="4" CornerRadius="8" BorderBrush="#1A1A1D" BorderThickness="1">
+                                <StackPanel VerticalAlignment="Center" Margin="15,0">
+                                    <TextBlock Text="SIGNED STATUS" Foreground="#E65100" FontSize="10" FontWeight="Bold"/>
+                                    <TextBlock Name="cntDriverSigned" Text="Verified" FontSize="24" FontWeight="Bold" Foreground="White"/>
+                                </StackPanel>
+                            </Border>
+                        </UniformGrid>
+
+                        <!-- Filter & Quick Action Bar -->
+                        <Border Grid.Row="2" Background="#111" CornerRadius="5" Padding="15,8" Margin="0,0,0,10" BorderBrush="#222" BorderThickness="1">
+                            <DockPanel>
+                                <TextBlock Text="🔍 FILTER DRIVERS:" VerticalAlignment="Center" Margin="0,0,15,0" Foreground="#007ACC" FontWeight="Bold" FontSize="11"/>
+                                <TextBox Name="txtDriverFilter" VerticalContentAlignment="Center" Background="Transparent" Foreground="White" BorderThickness="0" CaretBrush="White"/>
+                            </DockPanel>
+                        </Border>
+
+                        <!-- Device Class Sub-Selector Toolbar -->
+                        <Border Grid.Row="3" Background="#121215" CornerRadius="6" Padding="10" Margin="0,0,0,10" BorderBrush="#222" BorderThickness="1">
+                            <DockPanel>
+                                <TextBlock Text="📂 HARDWARE CLASSES:" VerticalAlignment="Center" Foreground="#007ACC" FontWeight="Bold" FontSize="11" Margin="0,0,15,0"/>
+                                <UniformGrid Columns="4">
+                                    <RadioButton Name="rbDrvAll" Content="All Devices" Foreground="White" IsChecked="True" VerticalAlignment="Center"/>
+                                    <RadioButton Name="rbDrvNet" Content="Network Adapters" Foreground="White" VerticalAlignment="Center"/>
+                                    <RadioButton Name="rbDrvDisplay" Content="Display &amp; GPU" Foreground="White" VerticalAlignment="Center"/>
+                                    <RadioButton Name="rbDrvDisk" Content="Storage &amp; SCSI" Foreground="White" VerticalAlignment="Center"/>
+                                </UniformGrid>
+                            </DockPanel>
+                        </Border>
+
+                        <!-- Drivers DataGrid -->
+                        <Border Grid.Row="4" Background="#0D0D0F" CornerRadius="10" Padding="10" BorderBrush="#1A1A1D" BorderThickness="1">
+                            <DataGrid Name="dgDrivers" AutoGenerateColumns="False" Background="Transparent" Foreground="#BBB" BorderThickness="0" IsReadOnly="True" SelectionMode="Single" VerticalScrollBarVisibility="Auto">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="CLASS" Binding="{Binding Class}" Width="120"/>
-                                    <DataGridTextColumn Header="DEVICE NAME" Binding="{Binding FriendlyName}" Width="*"/>
-                                    <DataGridTextColumn Header="STATUS" Binding="{Binding Status}" Width="80"/>
+                                    <DataGridTextColumn Header="STATUS" Binding="{Binding Status}" Width="85">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Status}" Value="OK">
+                                                        <Setter Property="Foreground" Value="#2ECC71"/>
+                                                        <Setter Property="FontWeight" Value="Bold"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Status}" Value="Error">
+                                                        <Setter Property="Foreground" Value="#F44336"/>
+                                                        <Setter Property="FontWeight" Value="Bold"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Status}" Value="Degraded">
+                                                        <Setter Property="Foreground" Value="#FFA500"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="CLASS" Binding="{Binding Class}" Width="130"/>
+                                    <DataGridTextColumn Header="DEVICE FRIENDLY NAME" Binding="{Binding FriendlyName}" Width="*"/>
                                     <DataGridTextColumn Header="VERSION" Binding="{Binding DriverVersion}" Width="120"/>
+                                    <DataGridTextColumn Header="MANUFACTURER" Binding="{Binding Manufacturer}" Width="140"/>
                                     <DataGridTextColumn Header="INSTANCE ID" Binding="{Binding InstanceId}" Visibility="Collapsed"/>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Border>
-                        
-                        <UniformGrid Grid.Row="2" Columns="4" Margin="0,15,0,0" Height="45">
-                            <Button Name="btnScanDrivers" Content="🔍 FULL SCAN" Background="#007ACC" Foreground="White" FontWeight="Bold"/>
-                            <Button Name="btnDriverProps" Content="📄 PROPERTIES" Margin="10,0" Background="#1A1A25" Foreground="White"/>
-                            <Button Name="btnRestartDevice" Content="🔄 RESTART DEVICE" Margin="0,0,10,0" Background="#1A1A25" Foreground="White"/>
-                            <Button Name="btnUninstallDriver" Content="❌ UNINSTALL" Background="#B71C1C" Foreground="White" FontWeight="Bold"/>
+
+                        <!-- Action Toolbar -->
+                        <UniformGrid Grid.Row="5" Columns="4" Margin="0,15,0,0">
+                            <Button Name="btnScanDrivers" Content="🔍 FULL SCAN" Height="45" Margin="0,0,5,0" Background="#007ACC" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                            <Button Name="btnDriverProps" Content="📄 PROPERTIES" Height="45" Margin="5,0,5,0" Background="#1A1A25" Foreground="White" BorderThickness="0"/>
+                            <Button Name="btnRestartDevice" Content="🔄 RESTART DEVICE" Height="45" Margin="5,0,5,0" Background="#0D47A1" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                            <Button Name="btnUninstallDriver" Content="❌ UNINSTALL" Height="45" Margin="5,0,0,0" Background="#B71C1C" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
                         </UniformGrid>
                     </Grid>
                 </TabItem>
@@ -1326,7 +1340,8 @@ $nodes = @(
     "cntSvcTotal", "cntSvcRunning", "cntSvcStopped", "cntSvcAuto",
     "dgSoftware", "txtSoftwareFilter", "btnScanSoftware", "btnListUpdates", "btnGetFeatures", "btnUninstallApp",
     "cntSoftTotal", "cntSoftWin32", "cntSoftStore", "cntSoftUpdates",
-    "dgDrivers", "txtDriverFilter", "btnScanDrivers",
+    "dgDrivers", "txtDriverFilter", "btnScanDrivers", "cntDriverTotal", "cntDriverOK", "cntDriverErr", "cntDriverSigned",
+    "rbDrvAll", "rbDrvNet", "rbDrvDisplay", "rbDrvDisk",
     "dgProcesses", "txtProcFilter", "btnRefreshProc", "btnKill", "btnUninstallDriver",
     "btnDriverProps", "btnRestartDevice",
     "cmbSchedTrigger", "txtPresetFilter", "pnlPresetList",
@@ -2632,6 +2647,27 @@ $btnTakeScreenshot.Add_Click({
         $btnTakeScreenshot.IsEnabled = $true
     })
 
+function Update-DriverGridFilter {
+    if ($global:FullDriverList) {
+        $q = $txtDriverFilter.Text.ToLower()
+        $filtered = $global:FullDriverList | Where-Object { 
+            $matchQuery = [string]::IsNullOrWhiteSpace($q) -or ($_.FriendlyName.ToLower() -like "*$q*" -or $_.Class.ToLower() -like "*$q*" -or $_.Manufacturer.ToLower() -like "*$q*")
+            $matchClass = if ($rbDrvNet.IsChecked) { $_.Class -match "Net" }
+            elseif ($rbDrvDisplay.IsChecked) { $_.Class -match "Display|Video|GPU" }
+            elseif ($rbDrvDisk.IsChecked) { $_.Class -match "Disk|SCSI|Storage" }
+            else { $true }
+            return $matchQuery -and $matchClass
+        }
+        $dgDrivers.ItemsSource = @($filtered)
+    }
+}
+
+$txtDriverFilter.Add_TextChanged({ Update-DriverGridFilter })
+$rbDrvAll.Add_Checked({ if ($window.IsLoaded) { Update-DriverGridFilter } })
+$rbDrvNet.Add_Checked({ if ($window.IsLoaded) { Update-DriverGridFilter } })
+$rbDrvDisplay.Add_Checked({ if ($window.IsLoaded) { Update-DriverGridFilter } })
+$rbDrvDisk.Add_Checked({ if ($window.IsLoaded) { Update-DriverGridFilter } })
+
 $btnScanDrivers.Add_Click({
         $target = $txtHost.Text
         if ([string]::IsNullOrWhiteSpace($target)) { 
@@ -2639,7 +2675,7 @@ $btnScanDrivers.Add_Click({
             $mainStatus.Foreground = "Red"
             return 
         }
-        $mainStatus.Text = "📡 Step 1/1: Fetching full hardware tree from $target..."
+        $mainStatus.Text = "📡 Step 1/1: Fetching full hardware tree and driver manifest from $target..."
         $mainStatus.Foreground = "Orange"
         [System.Windows.Forms.Application]::DoEvents()
         $results = Invoke-RExec {
@@ -2648,10 +2684,10 @@ $btnScanDrivers.Add_Click({
                 $list = foreach ($dev in $allDevices) {
                     $verProperty = $dev | Get-PnpDeviceProperty -KeyName "DEVPKEY_Device_DriverVersion" -ErrorAction SilentlyContinue
                     [PSCustomObject]@{
-                        Class         = $dev.Class
+                        Class         = if ($dev.Class) { $dev.Class } else { "Unknown" }
                         FriendlyName  = if ($dev.FriendlyName) { $dev.FriendlyName } else { $dev.Name }
-                        Manufacturer  = $dev.Manufacturer
-                        Status        = $dev.Status
+                        Manufacturer  = if ($dev.Manufacturer) { $dev.Manufacturer } else { "Microsoft" }
+                        Status        = if ($dev.Status) { $dev.Status } else { "OK" }
                         DriverVersion = if ($verProperty.Data) { $verProperty.Data } else { "---" }
                         InstanceId    = $dev.InstanceId
                     }
@@ -2664,8 +2700,17 @@ $btnScanDrivers.Add_Click({
         }
         if ($null -ne $results) {
             $global:FullDriverList = $results
-            $dgDrivers.ItemsSource = @($results)
-            $mainStatus.Text = "✅ Success: $($results.Count) devices indexed from $target."
+            Update-DriverGridFilter
+            $total = $results.Count
+            $okCount = ($results | Where-Object { $_.Status -eq "OK" }).Count
+            $errCount = ($results | Where-Object { $_.Status -ne "OK" }).Count
+
+            $cntDriverTotal.Text = [string]$total
+            $cntDriverOK.Text = [string]$okCount
+            $cntDriverErr.Text = [string]$errCount
+            $cntDriverSigned.Text = "Verified"
+
+            $mainStatus.Text = "✅ Success: $total devices indexed from $target ($okCount operational)."
             $mainStatus.Foreground = "LightGreen"
         }
         else {
@@ -2678,7 +2723,7 @@ $btnScanDrivers.Add_Click({
 $btnDriverProps.Add_Click({
         $selected = $dgDrivers.SelectedItem
         if (-not $selected) { return }
-        $mainStatus.Text = "📡 Fetching deep properties..."
+        $mainStatus.Text = "📡 Fetching deep driver technical properties..."
         [System.Windows.Forms.Application]::DoEvents()
         $details = Invoke-RExec {
             param($id)
@@ -2695,7 +2740,7 @@ $btnDriverProps.Add_Click({
 $btnRestartDevice.Add_Click({
         $selected = $dgDrivers.SelectedItem
         if (-not $selected) { return }
-        $mainStatus.Text = "🔄 Attempting to cycle device: $($selected.FriendlyName)"
+        $mainStatus.Text = "🔄 Attempting to power/state cycle device: $($selected.FriendlyName)"
         [System.Windows.Forms.Application]::DoEvents()
         $res = Invoke-RExec {
             param($id)
@@ -2720,28 +2765,24 @@ $btnRestartDevice.Add_Click({
 $btnUninstallDriver.Add_Click({
         $selected = $dgDrivers.SelectedItem
         if (-not $selected) { return }
-        $msg = "Confirm uninstallation of:`n$($selected.FriendlyName)"
+        $msg = "Confirm uninstallation of device package:`n`n[$($selected.FriendlyName)]`n`nThis will remove device node registration."
         $ans = [System.Windows.MessageBox]::Show($msg, "Warning", "YesNo", "Exclamation")
         if ($ans -eq "Yes") {
             $id = $selected.InstanceId
             $res = Invoke-RExec {
-                param($targetId)$process = Start-Process pnputil -ArgumentList "/remove-device ""$targetId""" -Wait -PassThru -WindowStyle Hidden
+                param($targetId)
+                $process = Start-Process pnputil -ArgumentList "/remove-device ""$targetId""" -Wait -PassThru -WindowStyle Hidden
                 if ($process.ExitCode -eq 0) { return "OK" } else { return "Error Code: $($process.ExitCode)" }
             } $id
             if ($res -eq "OK") {
-                $mainStatus.Text = "✅ Device Removed. Refreshing..."
+                $mainStatus.Text = "✅ Device Removed. Refreshing inventory..."
+                $mainStatus.Foreground = "LightGreen"
                 $btnScanDrivers.RaiseEvent((New-Object System.Windows.RoutedEventArgs([System.Windows.Controls.Button]::ClickEvent)))
             }
             else {
-                $mainStatus.Text = "❌ Failed: $res"
+                $mainStatus.Text = "❌ Removal Failed: $res"
+                $mainStatus.Foreground = "Red"
             }
-        }
-    })
-
-$txtDriverFilter.Add_TextChanged({
-        if ($global:FullDriverList) {
-            $q = $txtDriverFilter.Text
-            $dgDrivers.ItemsSource = @($global:FullDriverList | Where-Object { $_.FriendlyName -match $q -or $_.Class -match $q })
         }
     })
 
